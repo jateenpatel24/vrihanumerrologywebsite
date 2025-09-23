@@ -13,105 +13,10 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #e8f5e9 100%);
+            background-color: #e8f5e9;
             color: #1e293b;
             position: relative;
             overflow-x: hidden;
-            min-height: 100vh;
-        }
-        
-        /* Cosmic Background Effects */
-        .cosmic-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(ellipse at top, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
-                        radial-gradient(ellipse at bottom, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-        }
-        
-        /* Floating Stars */
-        .star {
-            position: fixed;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite ease-in-out;
-            z-index: 0;
-        }
-        
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-        
-        /* Sacred Geometry Patterns */
-        .sacred-geometry {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            opacity: 0.1;
-            z-index: 0;
-            animation: rotate 60s linear infinite;
-        }
-        
-        @keyframes rotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        
-        /* Floating Numbers */
-        .floating-number {
-            position: fixed;
-            font-size: 2rem;
-            font-weight: bold;
-            color: rgba(16, 185, 129, 0.3);
-            z-index: 0;
-            pointer-events: none;
-            animation: floatNumber 8s infinite ease-in-out;
-        }
-        
-        @keyframes floatNumber {
-            0%, 100% { 
-                opacity: 0.2; 
-                transform: translateY(0px) rotate(0deg); 
-            }
-            50% { 
-                opacity: 0.8; 
-                transform: translateY(-30px) rotate(180deg); 
-            }
-        }
-        
-        /* Particle Effects */
-        .particle {
-            position: fixed;
-            width: 3px;
-            height: 3px;
-            background: radial-gradient(circle, #ffd700, #ffa500);
-            border-radius: 50%;
-            z-index: 0;
-            animation: particleFloat 15s infinite linear;
-        }
-        
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) translateX(0px);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) translateX(50px);
-                opacity: 0;
-            }
         }
         
         /* Loading Animation */
@@ -119,7 +24,7 @@
             width: 40px;
             height: 40px;
             border: 4px solid #e8f5e9;
-            border-top: 4px solid #10b981;
+            border-top: 4px solid #1e3a8a;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -147,6 +52,7 @@
             background-repeat: no-repeat;
             background-size: cover;
             position: relative;
+            background-color: #e8f5e9;
         }
         
         .parallax::before {
@@ -156,7 +62,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.1);
+            background-color: rgba(232, 245, 233, 0.2);
         }
         
         .section {
@@ -171,78 +77,30 @@
         }
         
         .glass-bg {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 1rem;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
         
         .apple-glass-panel {
             padding: 2rem;
             border-radius: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px) saturate(180%);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2),
-                        0 0 0 1px rgba(255, 255, 255, 0.1),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.35s ease;
-            position: relative;
-        }
-        
-        .apple-glass-panel::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #10b981, #3b82f6, #8b5cf6, #f59e0b);
-            border-radius: inherit;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
-        }
-        
-        .apple-glass-panel:hover::before {
-            opacity: 0.3;
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(14px) saturate(120%);
+            -webkit-backdrop-filter: blur(14px) saturate(120%);
+            transition: transform .35s ease, box-shadow .35s ease;
         }
         
         .apple-glass-panel:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
-                        0 0 30px rgba(16, 185, 129, 0.2);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
         }
         
         .glass-nav-link {
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        
-        /* Active navigation highlight - Teal Version */
-        .nav-link-active {
-            background: linear-gradient(135deg, #06b6d4, #0891b2) !important;
-            color: white !important;
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4),
-                        0 0 30px rgba(6, 182, 212, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.3) !important;
-        }
-        
-        .nav-link-active:hover {
-            background: linear-gradient(135deg, #0891b2, #0e7490) !important;
-            color: white !important;
-            transform: translateY(-3px) scale(1.05);
-        }
-        
-        .mobile-nav-active {
-            background: linear-gradient(135deg, #06b6d4, #0891b2) !important;
-            color: white !important;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-weight: 600;
         }
         
         @media (max-width: 768px) {
@@ -268,7 +126,6 @@
             width: 100%;
         }
         
-        /* Mystical Background Number */
         .background-number {
             position: fixed;
             top: 50%;
@@ -276,25 +133,15 @@
             transform: translate(-50%, -50%);
             font-size: 20rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #10b981, #3b82f6, #8b5cf6);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: 0.1;
+            color: rgba(30, 58, 138, 0.3);
             z-index: 0;
             pointer-events: none;
-            animation: mysticalGlow 6s ease-in-out infinite;
+            animation: float 6s ease-in-out infinite;
         }
         
-        @keyframes mysticalGlow {
-            0%, 100% { 
-                transform: translate(-50%, -50%) translateY(0px) rotate(0deg); 
-                opacity: 0.1;
-            }
-            50% { 
-                transform: translate(-50%, -50%) translateY(-20px) rotate(5deg); 
-                opacity: 0.2;
-            }
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+            50% { transform: translate(-50%, -50%) translateY(-20px); }
         }
         
         /* Social Logo Styles */
@@ -402,55 +249,36 @@
             padding: 5px; 
         }
         
-        /* Enhanced Service Card Styles */
+        /* Service Card Styles */
         .service-card {
             padding: 2rem;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(15px) saturate(180%);
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
         }
         
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #10b981, #3b82f6, #8b5cf6, #f59e0b);
-            border-radius: inherit;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
-        }
-        
-        .service-card:hover::before {
-            opacity: 0.5;
-        }
-        
         .service-card:hover {
-            transform: translateY(-10px) rotateX(5deg);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25),
-                        0 0 50px rgba(16, 185, 129, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
         }
         
-        .service-card::after {
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s;
+            background: linear-gradient(90deg, transparent, rgba(30, 58, 138, 0.1), transparent);
+            transition: left 0.5s;
         }
         
-        .service-card:hover::after {
+        .service-card:hover::before {
             left: 100%;
         }
         
@@ -461,33 +289,31 @@
             right: 20px;
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
+            background-color: #25D366;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
             z-index: 1000;
             transition: all 0.3s ease;
-            animation: mysticalPulse 3s infinite;
+            animation: pulse 2s infinite;
         }
         
         .floating-whatsapp:hover {
-            transform: scale(1.15);
-            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.7);
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
         }
         
-        @keyframes mysticalPulse {
+        @keyframes pulse {
             0% {
-                box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
             }
             50% {
-                box-shadow: 0 8px 30px rgba(37, 211, 102, 0.8), 
-                            0 0 0 15px rgba(37, 211, 102, 0.1),
-                            0 0 0 30px rgba(37, 211, 102, 0.05);
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.1);
             }
             100% {
-                box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
             }
         }
         
@@ -498,7 +324,7 @@
             left: 20px;
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            background-color: #1e3a8a;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -508,7 +334,6 @@
             transition: all 0.3s ease;
             z-index: 999;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
         }
         
         .back-to-top.show {
@@ -517,8 +342,8 @@
         }
         
         .back-to-top:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
         }
         
         /* Modal Styles */
@@ -547,8 +372,7 @@
         }
         
         .modal-content {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            background: white;
             padding: 2rem;
             border-radius: 1rem;
             max-width: 500px;
@@ -557,7 +381,6 @@
             overflow-y: auto;
             position: relative;
             animation: slideIn 0.3s ease;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
         
         @keyframes slideIn {
@@ -597,10 +420,10 @@
         .form-group textarea {
             width: 100%;
             padding: 0.75rem;
-            border: 2px solid rgba(16, 185, 129, 0.3);
+            border: 2px solid #e8f5e9;
             border-radius: 0.5rem;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease;
             background: rgba(255, 255, 255, 0.9);
         }
         
@@ -608,9 +431,8 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #10b981;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1),
-                        0 0 20px rgba(16, 185, 129, 0.2);
+            border-color: #1e3a8a;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
         }
         
         .form-group textarea {
@@ -619,7 +441,7 @@
         }
         
         .submit-btn {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: #1e3a8a;
             color: white;
             padding: 0.75rem 2rem;
             border: none;
@@ -629,13 +451,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
-            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
         }
         
         .submit-btn:hover {
-            background: linear-gradient(135deg, #059669, #047857);
+            background: #3b82f6;
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
         }
         
         .submit-btn:disabled {
@@ -649,15 +470,13 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: rgba(30, 58, 138, 0.9);
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 2rem;
             font-size: 0.8rem;
             font-weight: 600;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
-            animation: mysticalGlow 4s ease-in-out infinite;
         }
         
         /* Pricing Toggle */
@@ -667,31 +486,28 @@
         }
         
         .toggle-btn {
-            background: rgba(16, 185, 129, 0.1);
-            color: #10b981;
-            border: 2px solid #10b981;
+            background: rgba(30, 58, 138, 0.1);
+            color: #1e3a8a;
+            border: 2px solid #1e3a8a;
             padding: 0.5rem 1rem;
             border-radius: 2rem;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 0.9rem;
-            backdrop-filter: blur(5px);
         }
         
         .toggle-btn:hover,
         .toggle-btn.active {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: #1e3a8a;
             color: white;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
         
         .pricing-info {
             margin-top: 1rem;
             padding: 1rem;
-            background: rgba(16, 185, 129, 0.05);
+            background: rgba(30, 58, 138, 0.05);
             border-radius: 0.5rem;
             display: none;
-            backdrop-filter: blur(5px);
         }
         
         .pricing-info.show {
@@ -716,15 +532,14 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: rgba(16, 185, 129, 0.3);
+            background: rgba(30, 58, 138, 0.3);
             cursor: pointer;
             transition: all 0.3s ease;
         }
         
         .dot.active {
-            background: linear-gradient(135deg, #10b981, #059669);
-            transform: scale(1.3);
-            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+            background: #1e3a8a;
+            transform: scale(1.2);
         }
         
         /* Notification Toast */
@@ -732,11 +547,11 @@
             position: fixed;
             top: 100px;
             right: 20px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
+            background: #25D366;
             color: white;
             padding: 1rem 1.5rem;
             border-radius: 0.5rem;
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             z-index: 2001;
             transform: translateX(400px);
             transition: transform 0.3s ease;
@@ -745,45 +560,10 @@
         .toast.show {
             transform: translateX(0);
         }
-        
-        /* Constellation Lines */
-        .constellation-line {
-            position: fixed;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), transparent);
-            z-index: 0;
-            animation: constellationMove 20s infinite linear;
-        }
-        
-        @keyframes constellationMove {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
-        }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-green-100">
-    
-    <!-- Cosmic Background -->
-    <div class="cosmic-background"></div>
-    
-    <!-- Sacred Geometry Background -->
-    <div class="sacred-geometry">
-        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <pattern id="sacred-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <circle cx="20" cy="20" r="2" fill="rgba(16, 185, 129, 0.3)"/>
-                </pattern>
-            </defs>
-            <rect width="400" height="400" fill="url(#sacred-pattern)"/>
-            <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(16, 185, 129, 0.2)" stroke-width="2"/>
-            <circle cx="200" cy="200" r="100" fill="none" stroke="rgba(59, 130, 246, 0.2)" stroke-width="2"/>
-            <circle cx="200" cy="200" r="50" fill="none" stroke="rgba(139, 92, 246, 0.2)" stroke-width="2"/>
-            <polygon points="200,50 350,200 200,350 50,200" fill="none" stroke="rgba(245, 158, 11, 0.2)" stroke-width="2"/>
-        </svg>
-    </div>
-
-    <!-- Mystical Background Number -->
+<body class="bg-[#e8f5e9]">
+    <!-- Background Number -->
     <div class="background-number hidden md:block">24</div>
 
     <!-- Social Proof Badge -->
@@ -794,27 +574,27 @@
     <!-- Header -->
     <header class="fixed top-0 left-0 w-full z-50 py-4 glass-bg shadow-lg">
         <nav class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#home" class="text-2xl font-bold tracking-widest text-white">VRIHA <span class="text-[#10b981]">NUMERROLOGY</span></a>
+            <a href="#home" class="text-2xl font-bold tracking-widest text-[#1e3a8a]">VRIHA <span class="text-[#1e3a8a]">NUMERROLOGY</span></a>
             <ul class="hidden md:flex space-x-4 items-center">
-                <li><a href="#about" class="glass-nav-link text-white hover:text-[#10b981] transition duration-300 bg-white/10 rounded-full px-4 py-2" data-section="about">About</a></li>
-                <li><a href="#services" class="glass-nav-link text-white hover:text-[#10b981] transition duration-300 bg-white/10 rounded-full px-4 py-2" data-section="services">Services</a></li>
-                <li><a href="#testimonials" class="glass-nav-link text-white hover:text-[#10b981] transition duration-300 bg-white/10 rounded-full px-4 py-2" data-section="testimonials">Testimonials</a></li>
-                <li><a href="#contact" class="glass-nav-link text-white hover:text-[#10b981] transition duration-300 bg-white/10 rounded-full px-4 py-2" data-section="contact">Contact</a></li>
-                <li><button id="booking-btn" class="bg-gradient-to-r from-[#10b981] to-[#059669] text-white px-4 py-2 rounded-full hover:from-[#059669] hover:to-[#047857] transition duration-300 shadow-lg">Book Now</button></li>
+                <li><a href="#about" class="glass-nav-link text-[#1e293b] hover:text-[#1e3a8a] transition duration-300 bg-white/10 rounded-full px-4 py-2">About</a></li>
+                <li><a href="#services" class="glass-nav-link text-[#1e293b] hover:text-[#1e3a8a] transition duration-300 bg-white/10 rounded-full px-4 py-2">Services</a></li>
+                <li><a href="#testimonials" class="glass-nav-link text-[#1e293b] hover:text-[#1e3a8a] transition duration-300 bg-white/10 rounded-full px-4 py-2">Testimonials</a></li>
+                <li><a href="#contact" class="glass-nav-link text-[#1e293b] hover:text-[#1e3a8a] transition duration-300 bg-white/10 rounded-full px-4 py-2">Contact</a></li>
+                <li><button id="booking-btn" class="bg-[#1e3a8a] text-white px-4 py-2 rounded-full hover:bg-[#3b82f6] transition duration-300">Book Now</button></li>
             </ul>
-            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+            <button id="mobile-menu-button" class="md:hidden text-[#1e293b] focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-black/20 backdrop-blur-md mt-4 py-2 px-6 rounded-lg mx-4">
+        <div id="mobile-menu" class="hidden md:hidden bg-[#dcedc8] mt-4 py-2 px-6 rounded-lg mx-4">
             <ul class="flex flex-col space-y-4 text-center">
-                <li><a href="#about" class="text-white hover:text-[#10b981] transition duration-300" data-section="about">About</a></li>
-                <li><a href="#services" class="text-white hover:text-[#10b981] transition duration-300" data-section="services">Services</a></li>
-                <li><a href="#testimonials" class="text-white hover:text-[#10b981] transition duration-300" data-section="testimonials">Testimonials</a></li>
-                <li><a href="#contact" class="text-white hover:text-[#10b981] transition duration-300" data-section="contact">Contact</a></li>
-                <li><button id="mobile-booking-btn" class="bg-gradient-to-r from-[#10b981] to-[#059669] text-white px-4 py-2 rounded-full hover:from-[#059669] hover:to-[#047857] transition duration-300 w-full">Book Now</button></li>
+                <li><a href="#about" class="text-[#1e293b] hover:text-[#1e3a8a] transition duration-300">About</a></li>
+                <li><a href="#services" class="text-[#1e293b] hover:text-[#1e3a8a] transition duration-300">Services</a></li>
+                <li><a href="#testimonials" class="text-[#1e293b] hover:text-[#1e3a8a] transition duration-300">Testimonials</a></li>
+                <li><a href="#contact" class="text-[#1e293b] hover:text-[#1e3a8a] transition duration-300">Contact</a></li>
+                <li><button id="mobile-booking-btn" class="bg-[#1e3a8a] text-white px-4 py-2 rounded-full hover:bg-[#3b82f6] transition duration-300 w-full">Book Now</button></li>
             </ul>
         </div>
     </header>
@@ -822,14 +602,14 @@
     <!-- Main Content -->
     <main class="relative z-10">
         <!-- Home Section -->
-        <section id="home" class="section parallax flex-col text-center text-white scroll-animate">
+        <section id="home" class="section parallax flex-col text-center text-[#1e293b] scroll-animate">
             <div class="relative z-10 p-6 md:p-12 glass-bg rounded-2xl max-w-4xl mx-auto shadow-xl">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-[#10b981] to-[#3b82f6] bg-clip-text text-transparent">Unlock Your Life's Potential</h1>
-                <h2 class="text-xl md:text-2xl font-light mb-8 text-gray-200">Guided By The Wisdom of Numbers And Planets.</h2>
-                <p class="text-lg md:text-xl font-light mb-10 text-gray-300">Numerology And Signature Consultation for Financial Growth, Business, Company Name, Career, Health, Personal Matters based on analysis of Date of Birth, Prediction & Suggestion.</p>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-[#1e3a8a]">Unlock Your Life's Potential</h1>
+                <h2 class="text-xl md:text-2xl font-light mb-8">Guided By The Wisdom of Numbers And Planets.</h2>
+                <p class="text-lg md:text-xl font-light mb-10">Numerology And Signature Consultation for Financial Growth, Business, Company Name, Career, Health, Personal Matters based on analysis of Date of Birth, Prediction & Suggestion.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#contact" class="px-8 py-4 bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold text-lg rounded-full shadow-lg hover:from-[#059669] hover:to-[#047857] transition-all duration-300 transform hover:scale-105">Book a Reading</a>
-                    <button id="hero-booking-btn" class="px-8 py-4 bg-transparent border-2 border-[#10b981] text-[#10b981] font-bold text-lg rounded-full hover:bg-[#10b981] hover:text-white transition duration-300">Quick Booking</button>
+                    <a href="#contact" class="px-8 py-4 bg-[#1e3a8a] text-[#ffffff] font-bold text-lg rounded-full shadow-lg hover:bg-[#3b82f6] transition-transform duration-300 transform hover:scale-105">Book a Reading</a>
+                    <button id="hero-booking-btn" class="px-8 py-4 bg-transparent border-2 border-[#1e3a8a] text-[#1e3a8a] font-bold text-lg rounded-full hover:bg-[#1e3a8a] hover:text-white transition duration-300">Quick Booking</button>
                 </div>
             </div>
         </section>
@@ -837,17 +617,17 @@
         <!-- About Section -->
         <section id="about" class="section scroll-animate">
             <div class="container mx-auto px-6 max-w-6xl apple-glass-panel">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-[#10b981] to-[#3b82f6] bg-clip-text text-transparent">Meet Bbipin K Patel</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#1e3a8a]">Meet Bbipin K Patel</h2>
                 <div class="flex flex-col md:flex-row items-center md:space-x-12">
                     <div class="flex-shrink-0 mb-8 md:mb-0">
-                        <img src="https://placehold.co/300x300/e8f5e9/1e293b?text=Bbipin+K+Patel" alt="Bbipin K Patel - Numerologist" class="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-[#10b981] shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
+                        <img src="https://placehold.co/300x300/e8f5e9/1e293b?text=Bbipin+K+Patel" alt="Bbipin K Patel - Numerologist" class="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-[#1e3a8a] shadow-2xl hover:shadow-3xl transition-all duration-300">
                     </div>
-                    <div class="text-lg leading-relaxed text-center md:text-left text-gray-200">
+                    <div class="text-lg leading-relaxed text-center md:text-left text-[#1e293b]">
                         <p class="mb-4">Greetings! I am Bbipin K Patel, a seasoned numerologist with a deep passion for helping individuals navigate their life's journey through the ancient science of numbers. For years, I have provided personalized consultations, blending traditional numerological principles with intuitive guidance to help clients achieve their goals.</p>
                         <p class="mb-4">At VRIHA NUMERROLOGY, my mission is to empower you to make informed decisions and unlock your full potential. Whether it's optimizing your business name for success, choosing a rewarding career path, or understanding your personal relationships, numbers hold the key to a more harmonious life.</p>
                         <p>I believe that every number tells a story, and I am here to help you read yours. My approach is rooted in compassion, integrity, and a commitment to your well-being. Let's embark on this journey together.</p>
                         <div class="mt-6 text-center md:text-left">
-                            <span class="inline-block bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white px-4 py-2 rounded-full text-sm font-semibold mr-2 mb-2 shadow-lg">5000+ Consultations</span>
+                            <span class="inline-block bg-[#25D366] text-white px-4 py-2 rounded-full text-sm font-semibold mr-2 mb-2">5000+ Consultations</span>
                         </div>
                     </div>
                 </div>
@@ -857,53 +637,53 @@
         <!-- Services Section -->
         <section id="services" class="section scroll-animate">
             <div class="container mx-auto px-6 max-w-6xl apple-glass-panel">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-[#10b981] to-[#3b82f6] bg-clip-text text-transparent">Our Services</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#1e3a8a]">Our Services</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
                     <div class="service-card text-center">
                         <div class="text-4xl mb-4">🏠</div>
-                        <h3 class="text-2xl font-semibold mb-4 text-[#10b981]">Vastu Consultation</h3>
-                        <p class="text-base text-gray-200 mb-4">We offer expert Vastu consultation for your Home, Office, and Factory to create a positive and prosperous environment.</p>
+                        <h3 class="text-2xl font-semibold mb-4 text-[#1e3a8a]">Vastu Consultation</h3>
+                        <p class="text-base text-[#1e293b] mb-4">We offer expert Vastu consultation for your Home, Office, and Factory to create a positive and prosperous environment.</p>
                         <div class="pricing-toggle">
                             <button class="toggle-btn" data-service="vastu">View Pricing</button>
                             <div class="pricing-info" data-pricing="vastu">
-                                <div class="text-sm text-[#10b981] font-semibold">Starting from ₹2,500</div>
-                                <div class="text-xs text-gray-300 mt-1">Home: ₹2,500 | Office: ₹5,000 | Factory: ₹10,000</div>
+                                <div class="text-sm text-[#1e3a8a] font-semibold">Starting from ₹2,500</div>
+                                <div class="text-xs text-[#1e293b] mt-1">Home: ₹2,500 | Office: ₹5,000 | Factory: ₹10,000</div>
                             </div>
                         </div>
                     </div>
                     <div class="service-card text-center">
                         <div class="text-4xl mb-4">✨</div>
-                        <h3 class="text-2xl font-semibold mb-4 text-[#10b981]">Name Suggestion</h3>
-                        <p class="text-base text-gray-200 mb-4">Receive personalized name suggestions that align with your birth date to bring you luck and success in all areas of life.</p>
+                        <h3 class="text-2xl font-semibold mb-4 text-[#1e3a8a]">Name Suggestion</h3>
+                        <p class="text-base text-[#1e293b] mb-4">Receive personalized name suggestions that align with your birth date to bring you luck and success in all areas of life.</p>
                         <div class="pricing-toggle">
                             <button class="toggle-btn" data-service="name">View Pricing</button>
                             <div class="pricing-info" data-pricing="name">
-                                <div class="text-sm text-[#10b981] font-semibold">Starting from ₹1,200</div>
-                                <div class="text-xs text-gray-300 mt-1">Business: ₹3,000 | Baby: ₹1,200</div>
+                                <div class="text-sm text-[#1e3a8a] font-semibold">Starting from ₹1,200</div>
+                                <div class="text-xs text-[#1e293b] mt-1">Business: ₹3,000 | Baby: ₹1,200</div>
                             </div>
                         </div>
                     </div>
                     <div class="service-card text-center">
                         <div class="text-4xl mb-4">✍️</div>
-                        <h3 class="text-2xl font-semibold mb-4 text-[#10b981]">Signature Customization</h3>
-                        <p class="text-base text-gray-200 mb-4">Get a customized signature design based on your birth date to enhance your personality and attract positive energy.</p>
+                        <h3 class="text-2xl font-semibold mb-4 text-[#1e3a8a]">Signature Customization</h3>
+                        <p class="text-base text-[#1e293b] mb-4">Get a customized signature design based on your birth date to enhance your personality and attract positive energy.</p>
                         <div class="pricing-toggle">
                             <button class="toggle-btn" data-service="signature">View Pricing</button>
                             <div class="pricing-info" data-pricing="signature">
-                                <div class="text-sm text-[#10b981] font-semibold">Starting from ₹2400</div>
-                                <div class="text-xs text-gray-300 mt-1">Premium: ₹2,400 </div>
+                                <div class="text-sm text-[#1e3a8a] font-semibold">Starting from ₹2400</div>
+                                <div class="text-xs text-[#1e293b] mt-1">Premium: ₹2,400 </div>
                             </div>
                         </div>
                     </div>
                     <div class="service-card text-center">
                         <div class="text-4xl mb-4">🔮</div>
-                        <h3 class="text-2xl font-semibold mb-4 text-[#10b981]">Numerology Consultation</h3>
-                        <p class="text-base text-gray-200 mb-4">Comprehensive numerology consultation for financial growth, business, career, health, and personal matters based on your date of birth and its prediction.</p>
+                        <h3 class="text-2xl font-semibold mb-4 text-[#1e3a8a]">Numerology Consultation</h3>
+                        <p class="text-base text-[#1e293b] mb-4">Comprehensive numerology consultation for financial growth, business, career, health, and personal matters based on your date of birth and its prediction.</p>
                         <div class="pricing-toggle">
                             <button class="toggle-btn" data-service="numerology">View Pricing</button>
                             <div class="pricing-info" data-pricing="numerology">
-                                <div class="text-sm text-[#10b981] font-semibold">Starting from ₹2,400</div>
-                                <div class="text-xs text-gray-300 mt-1">Detailed: ₹2400 </div>
+                                <div class="text-sm text-[#1e3a8a] font-semibold">Starting from ₹2,400</div>
+                                <div class="text-xs text-[#1e293b] mt-1">Detailed: ₹2400 </div>
                             </div>
                         </div>
                     </div>
@@ -914,7 +694,7 @@
         <!-- Testimonials Section -->
         <section id="testimonials" class="section scroll-animate">
             <div class="container mx-auto px-6 max-w-6xl apple-glass-panel">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-[#10b981] to-[#3b82f6] bg-clip-text text-transparent">What Clients Say</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#1e3a8a]">What Clients Say</h2>
                 <div class="relative w-full overflow-hidden">
                     <div id="testimonial-slider" class="flex transition-transform duration-500 ease-in-out testimonial-container">
                         <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
@@ -923,8 +703,8 @@
                                     <span class="text-2xl">⭐⭐⭐⭐⭐</span>
                                 </div>
                             </div>
-                            <p class="text-lg italic text-gray-200 mb-4">"I'm truly grateful to Vriha Numerology for being a constant guiding light throughout my visa process. Their predictions were incredibly accurate, and I believe their influence played a significant role in the successful outcome of my visa application. Their guidance was a symbol of trust and gave me the confidence and positivity I needed."</p>
-                            <p class="text-right text-base font-semibold text-[#10b981]">- Dhruv Bhatt</p>
+                            <p class="text-lg italic text-[#1e293b] mb-4">"I'm truly grateful to Vriha Numerology for being a constant guiding light throughout my visa process. Their predictions were incredibly accurate, and I believe their influence played a significant role in the successful outcome of my visa application. Their guidance was a symbol of trust and gave me the confidence and positivity I needed."</p>
+                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Dhruv Bhatt</p>
                         </div>
                         <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
                             <div class="flex justify-center mb-4">
@@ -932,8 +712,8 @@
                                     <span class="text-2xl">⭐⭐⭐⭐⭐</span>
                                 </div>
                             </div>
-                            <p class="text-lg italic text-gray-200 mb-4">"I had a very positive experience with Vriha Numerology. Bbipin Patel is highly knowledgeable, calm, and genuinely dedicated to helping people. His insights were accurate and deeply meaningful, and he explained everything with patience and clarity. I left with a stronger sense of direction and renewed positivity. Highly recommended!"</p>
-                            <p class="text-right text-base font-semibold text-[#10b981]">- Apurva Patel</p>
+                            <p class="text-lg italic text-[#1e293b] mb-4">"I had a very positive experience with Vriha Numerology. Bbipin Patel is highly knowledgeable, calm, and genuinely dedicated to helping people. His insights were accurate and deeply meaningful, and he explained everything with patience and clarity. I left with a stronger sense of direction and renewed positivity. Highly recommended!"</p>
+                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Apurva Patel</p>
                         </div>
                         <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
                             <div class="flex justify-center mb-4">
@@ -941,8 +721,8 @@
                                     <span class="text-2xl">⭐⭐⭐⭐⭐</span>
                                 </div>
                             </div>
-                            <p class="text-lg italic text-gray-200 mb-4">"Vriha Numerology is the best! After getting my name and signature corrected, I was shocked by the sudden progress my career made. With the remedies provided by Bipin K. Patel, my USA process showed sudden and positive changes. He gave me valuable suggestions and guidance whenever needed, which helped me feel much more balanced."</p>
-                            <p class="text-right text-base font-semibold text-[#10b981]">- Neell Patel</p>
+                            <p class="text-lg italic text-[#1e293b] mb-4">"Vriha Numerology is the best! After getting my name and signature corrected, I was shocked by the sudden progress my career made. With the remedies provided by Bipin K. Patel, my USA process showed sudden and positive changes. He gave me valuable suggestions and guidance whenever needed, which helped me feel much more balanced."</p>
+                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Neell Patel</p>
                         </div>
                         <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
                             <div class="flex justify-center mb-4">
@@ -950,8 +730,8 @@
                                     <span class="text-2xl">⭐⭐⭐⭐⭐</span>
                                 </div>
                             </div>
-                            <p class="text-lg italic text-gray-200 mb-4">"I had an amazing experience with Bipinbhai. His insights into numerology and Vastu Shastra brought a positive shift in my life, especially in terms of health, and he offers practical, easy-to-practice solutions. His readings are incredibly accurate and he takes the time to listen and explain everything clearly. It was a truly valuable experience."</p>
-                            <p class="text-right text-base font-semibold text-[#10b981]">- Jolly Patel</p>
+                            <p class="text-lg italic text-[#1e293b] mb-4">"I had an amazing experience with Bipinbhai. His insights into numerology and Vastu Shastra brought a positive shift in my life, especially in terms of health, and he offers practical, easy-to-practice solutions. His readings are incredibly accurate and he takes the time to listen and explain everything clearly. It was a truly valuable experience."</p>
+                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Jolly Patel</p>
                         </div>
                         <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
                             <div class="flex justify-center mb-4">
@@ -959,8 +739,8 @@
                                     <span class="text-2xl">⭐⭐⭐⭐⭐</span>
                                 </div>
                             </div>
-                            <p class="text-lg italic text-gray-200 mb-4">"My professional life was in a rut. Bipin K. Patel's guidance on my business name and signature was a game-changer. Within weeks, I saw a noticeable increase in client inquiries and revenue. His insights are not just about numbers; they are about tangible results. I am extremely satisfied."</p>
-                            <p class="text-right text-base font-semibold text-[#10b981]">- Mitesh Shah</p>
+                            <p class="text-lg italic text-[#1e293b] mb-4">"My professional life was in a rut. Bipin K. Patel's guidance on my business name and signature was a game-changer. Within weeks, I saw a noticeable increase in client inquiries and revenue. His insights are not just about numbers; they are about tangible results. I am extremely satisfied."</p>
+                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Mitesh Shah</p>
                         </div>
                         <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
                             <div class="flex justify-center mb-4">
@@ -968,8 +748,8 @@
                                     <span class="text-2xl">⭐⭐⭐⭐⭐</span>
                                 </div>
                             </div>
-                            <p class="text-lg italic text-gray-200 mb-4">"I was skeptical at first, but after a consultation with Bipinbhai, I'm a believer. He provided me with a clear and concise numerology report that explained my life's challenges and opportunities. His practical advice helped me improve my relationships and gain clarity about my future. Highly recommend his services to anyone seeking direction."</p>
-                            <p class="text-right text-base font-semibold text-[#10b981]">- Sneha Desai</p>
+                            <p class="text-lg italic text-[#1e293b] mb-4">"I was skeptical at first, but after a consultation with Bipinbhai, I'm a believer. He provided me with a clear and concise numerology report that explained my life's challenges and opportunities. His practical advice helped me improve my relationships and gain clarity about my future. Highly recommend his services to anyone seeking direction."</p>
+                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Sneha Desai</p>
                         </div>
                         <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
                             <div class="flex justify-center mb-4">
@@ -977,15 +757,15 @@
                                     <span class="text-2xl">⭐⭐⭐⭐⭐</span>
                                 </div>
                             </div>
-                            <p class="text-lg italic text-gray-200 mb-4">"VRIHA NUMERROLOGY has been instrumental in my personal growth. Bbipin K. Patel's readings are not only accurate but also delivered with great empathy. The health-related suggestions he gave me were simple yet effective, and I have felt a positive change in my overall well-being. A truly genuine and kind professional."</p>
-                            <p class="text-right text-base font-semibold text-[#10b981]">- Rajesh Sharma</p>
+                            <p class="text-lg italic text-[#1e293b] mb-4">"VRIHA NUMERROLOGY has been instrumental in my personal growth. Bbipin K. Patel's readings are not only accurate but also delivered with great empathy. The health-related suggestions he gave me were simple yet effective, and I have felt a positive change in my overall well-being. A truly genuine and kind professional."</p>
+                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Rajesh Sharma</p>
                         </div>
                     </div>
                     <!-- Navigation Buttons -->
-                    <button id="prev-testimonial" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white/20 backdrop-blur-md text-white p-2 rounded-full shadow-lg ml-2 hover:bg-[#10b981] hover:text-white transition-colors duration-300 z-10 hidden md:block">
+                    <button id="prev-testimonial" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white text-[#1e293b] p-2 rounded-full shadow-lg ml-2 hover:bg-[#1e3a8a] hover:text-white transition-colors duration-300 z-10 hidden md:block">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
                     </button>
-                    <button id="next-testimonial" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white/20 backdrop-blur-md text-white p-2 rounded-full shadow-lg mr-2 hover:bg-[#10b981] hover:text-white transition-colors duration-300 z-10 hidden md:block">
+                    <button id="next-testimonial" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white text-[#1e293b] p-2 rounded-full shadow-lg mr-2 hover:bg-[#1e3a8a] hover:text-white transition-colors duration-300 z-10 hidden md:block">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                     </button>
                     <!-- Dot Indicators -->
@@ -997,22 +777,22 @@
         <!-- Contact Section -->
         <section id="contact" class="section scroll-animate">
             <div class="container mx-auto px-6 max-w-4xl apple-glass-panel">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-[#10b981] to-[#3b82f6] bg-clip-text text-transparent">Contact & Booking</h2>
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#1e3a8a]">Contact & Booking</h2>
                 <div class="p-8 glass-bg rounded-2xl shadow-xl text-center">
-                    <h3 class="text-2xl font-semibold mb-4 text-[#10b981]">Get in Touch</h3>
-                    <p class="mb-6 text-gray-200">Ready to start your journey? Contact me to book a personalized numerology reading.</p>
+                    <h3 class="text-2xl font-semibold mb-4 text-[#1e3a8a]">Get in Touch</h3>
+                    <p class="mb-6 text-[#1e293b]">Ready to start your journey? Contact me to book a personalized numerology reading.</p>
                     <ul class="space-y-4 flex flex-col items-center">
                         <li class="flex items-center space-x-2">
-                            <span class="font-semibold text-[#3b82f6]">Phone:</span>
+                            <span class="font-semibold text-[#1e3a8a]">Phone:</span>
                             <a href="https://wa.me/917041527196" target="_blank" rel="noopener noreferrer" class="social-logo-link whatsapp-logo-link">
                                 <svg viewBox="0 0 32 32" aria-hidden="true">
                                     <path d="M16.002 2.933c-7.255 0-13.143 5.888-13.143 13.143 0 2.315.6 4.577 1.746 6.583l-1.858 6.794 6.963-1.83c1.918 1.047 4.084 1.598 6.292 1.598h.001c7.255 0 13.143-5.888 13.143-13.143 0-3.514-1.368-6.82-3.855-9.307s-5.793-3.838-9.289-3.838zm0 23.919c-1.912 0-3.776-.51-5.395-1.474l-.385-.229-4.134 1.087 1.106-4.043-.25-.414c-1.04-1.72-1.59-3.698-1.59-5.743 0-6.102 4.963-11.065 11.065-11.065 2.955 0 5.732 1.151 7.818 3.238s3.235 4.872 3.235 7.809c0 6.101-4.963 11.064-11.065 11.064zm6.13-8.288c-.335-.167-1.983-.979-2.29-1.09-.307-.112-.53-.167-.754.167s-.864 1.09-1.059 1.314c-.195.223-.391.25-.726.083-.335-.167-1.414-.52-2.692-1.66-.994-.886-1.663-1.979-1.858-2.314-.195-.334-.021-.514.146-.68.15-.149.335-.391.503-.586.168-.195.224-.334.336-.557.112-.223.056-.417-.028-.584-.083-.167-.754-1.812-1.034-2.482-.272-.652-.55-.563-.754-.572-.195-.008-.419-.01-.644-.01-.223 0-.586.083-.892.417-.307.334-1.171 1.143-1.171 2.785s1.199 3.232 1.367 3.456c.168.223 2.356 3.6 5.71 5.041.799.345 1.422.551 1.908.705.801.255 1.53.219 2.106.132.642-.096 1.983-.811 2.263-1.593.279-.782.279-1.453.195-1.593-.084-.14-.307-.223-.642-.39z"/>
                                 </svg>
                             </a>
-                            <span class="text-gray-200">+91 70415 27196</span>
+                            <span class="text-[#1e293b]">+91 70415 27196</span>
                         </li>
                         <li class="flex items-center space-x-2">
-                            <span class="font-semibold text-[#3b82f6]">Email:</span>
+                            <span class="font-semibold text-[#1e3a8a]">Email:</span>
                             <a
                                 class="mail-icon small"
                                 id="mailButton"
@@ -1025,10 +805,10 @@
                                     <path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11zM4.5 6C4.224 6 4 6.224 4 6.5v.217l8 5.333 8-5.333V6.5c0-.276-.224-.5-.5-.5h-15zM20 8.383l-7.235 4.82a1 1 0 0 1-1.03 0L4 8.383V17.5c0 .276.224.5.5.5h15c.276 0 .5-.224.5-.5V8.383z"/>
                                 </svg>
                             </a>
-                            <span class="text-gray-200">bbipinkpatel24@yahoo.com</span>
+                            <span class="text-[#1e293b]">bbipinkpatel24@yahoo.com</span>
                         </li>
                         <li class="flex items-center space-x-2">
-                            <span class="font-semibold text-[#3b82f6]">Instagram:</span>
+                            <span class="font-semibold text-[#1e3a8a]">Instagram:</span>
                             <a
                                 class="instagram-logo small"
                                 id="instagramButton"
@@ -1043,21 +823,21 @@
                                     <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9S160.5 370.9 224.1 370.9 339 319.6 339 255.9 287.7 141 224.1 141zm0 190.6c-41.8 0-75.7-33.9-75.7-75.7s33.9-75.7 75.7-75.7 75.7 33.9 75.7 75.7-33.9 75.7-75.7 75.7zm146.4-194.3c0 14.9-12.1 27-27 27-14.9 0-27-12.1-27-27s12.1-27 27-27 27 12.1 27 27zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.9 1.7-67.7 9.9-93.9 36.2-26.2 26.2-34.4 58-36.2 93.9-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9 26.2 26.2 58 34.4 93.9 36.2 37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 58-34.4 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
                                 </svg>
                             </a>
-                            <span class="text-gray-200">vriha_numerrology_24_</span>
+                            <span class="text-[#1e293b]">vriha_numerrology_24_</span>
                         </li>
                           <li class="flex items-center space-x-2">
-                           <span class="text-xs text-gray-300"><strong>⚡ Fast Response</strong></span>
-                           <span class="text-xs text-gray-300"><strong>🔒 Confidential</strong></span>
-                           <span class="text-xs text-gray-300"><strong>🎯 Accurate Predictions</strong></span>
+                           <span class="text-xs"><strong>⚡ Fast Response</strong></span>
+                           <span class="text-xs"><strong>🔒 Confidential</strong></span>
+                           <span class="text-xs"><strong>🎯 Accurate Predictions</strong></span>
                         </li>
                         </li>
                           <li class="flex items-center space-x-2">
-                           <span class="text-xs text-gray-300"><strong>Address:</strong>Gf - 10, Arjun Complex, opp. Radheshyam party plot, near Saurabh School Road, Vijay Nagar, Nava Vadaj, Ahmedabad, Gujarat 382480</span>
+                           <span class="text-xs"><strong>Address:</strong>Gf - 10, Arjun Complex, opp. Radheshyam party plot, near Saurabh School Road, Vijay Nagar, Nava Vadaj, Ahmedabad, Gujarat 382480</span>
                            
                         </li>
                     </ul>
                     <div class="mt-8">
-                        <button id="main-booking-btn" class="px-8 py-4 bg-gradient-to-r from-[#10b981] to-[#059669] text-white font-bold text-lg rounded-full hover:from-[#059669] hover:to-[#047857] transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <button id="main-booking-btn" class="px-8 py-4 bg-[#1e3a8a] text-white font-bold text-lg rounded-full hover:bg-[#3b82f6] transition-all duration-300 transform hover:scale-105 shadow-lg">
                             📅 Book Consultation Now
                         </button>
                     </div>
@@ -1084,7 +864,7 @@
     <div id="booking-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal" id="close-modal">&times;</span>
-            <h2 class="text-2xl font-bold text-[#10b981] mb-6 text-center">Book Your Consultation</h2>
+            <h2 class="text-2xl font-bold text-[#1e3a8a] mb-6 text-center">Book Your Consultation</h2>
             <form id="booking-form">
                 <div class="form-group">
                     <label for="name">Full Name *</label>
@@ -1140,7 +920,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-black/30 backdrop-blur-md text-center text-sm py-8 text-gray-300">
+    <footer class="bg-[#dcedc8] text-center text-sm py-8 text-[#1e293b]">
         <div class="container mx-auto px-6">    
             <p>&copy; <span id="current-year"></span> VRIHA NUMERROLOGY. All Rights Reserved.</p>
             <p class="mt-2">Designed and Developed by Proomptify.</p>
@@ -1151,129 +931,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Create mystical background effects
-            function createStars() {
-                for (let i = 0; i < 100; i++) {
-                    const star = document.createElement('div');
-                    star.className = 'star';
-                    star.style.left = Math.random() * 100 + '%';
-                    star.style.top = Math.random() * 100 + '%';
-                    star.style.width = Math.random() * 3 + 1 + 'px';
-                    star.style.height = star.style.width;
-                    star.style.animationDelay = Math.random() * 3 + 's';
-                    document.body.appendChild(star);
-                }
-            }
-            
-            function createFloatingNumbers() {
-                const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-                for (let i = 0; i < 15; i++) {
-                    const numberEl = document.createElement('div');
-                    numberEl.className = 'floating-number';
-                    numberEl.textContent = numbers[Math.floor(Math.random() * numbers.length)];
-                    numberEl.style.left = Math.random() * 100 + '%';
-                    numberEl.style.top = Math.random() * 100 + '%';
-                    numberEl.style.animationDelay = Math.random() * 8 + 's';
-                    document.body.appendChild(numberEl);
-                }
-            }
-            
-            function createParticles() {
-                for (let i = 0; i < 50; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.animationDelay = Math.random() * 15 + 's';
-                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                    document.body.appendChild(particle);
-                }
-            }
-            
-            function createConstellationLines() {
-                for (let i = 0; i < 10; i++) {
-                    const line = document.createElement('div');
-                    line.className = 'constellation-line';
-                    line.style.left = Math.random() * 100 + '%';
-                    line.style.top = Math.random() * 100 + '%';
-                    line.style.width = Math.random() * 200 + 50 + 'px';
-                    line.style.transform = `rotate(${Math.random() * 360}deg)`;
-                    line.style.animationDelay = Math.random() * 20 + 's';
-                    document.body.appendChild(line);
-                }
-            }
-            
-            // Initialize mystical effects
-            createStars();
-            createFloatingNumbers();
-            createParticles();
-            createConstellationLines();
-
             // Get current year for footer
             const yearSpan = document.getElementById('current-year');
             yearSpan.textContent = new Date().getFullYear();
-
-            // Navigation highlighting functionality
-            const sections = document.querySelectorAll('section[id]');
-            let currentSection = '';
-            
-            function updateActiveNavigation(sectionId) {
-                // Remove active classes from all navigation links
-                document.querySelectorAll('.glass-nav-link').forEach(link => {
-                    link.classList.remove('nav-link-active');
-                });
-                
-                document.querySelectorAll('#mobile-menu a').forEach(link => {
-                    link.classList.remove('mobile-nav-active');
-                });
-                
-                // Add active class to current section links
-                if (sectionId) {
-                    const desktopLinks = document.querySelectorAll(`[data-section="${sectionId}"]`);
-                    desktopLinks.forEach(link => {
-                        if (link.classList.contains('glass-nav-link')) {
-                            link.classList.add('nav-link-active');
-                        } else {
-                            link.classList.add('mobile-nav-active');
-                        }
-                    });
-                }
-            }
-            
-            // Intersection Observer for navigation highlighting
-            const navObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        currentSection = entry.target.id;
-                        updateActiveNavigation(currentSection);
-                        console.log('Active section:', currentSection); // Debug log
-                    }
-                });
-            }, {
-                threshold: 0.4,
-                rootMargin: '-15% 0px -50% 0px'
-            });
-
-            // Observe all sections
-            sections.forEach(section => {
-                navObserver.observe(section);
-                console.log('Observing section:', section.id); // Debug log
-            });
-            
-            // Manual check on scroll (backup method)
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= 100 && rect.bottom >= 100) {
-                        current = section.id;
-                    }
-                });
-                
-                if (current && current !== currentSection) {
-                    currentSection = current;
-                    updateActiveNavigation(currentSection);
-                }
-            });
 
             // Scroll animations
             const observerOptions = {
