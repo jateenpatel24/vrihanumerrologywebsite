@@ -1,1328 +1,964 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VRIHA NUMERROLOGY | Numerology Consultation by Bbipin K Patel</title>
-    <meta name="description" content="VRIHA NUMERROLOGY offers professional numerology consultations for financial growth, business, career, health, and personal matters. Based on analysis of Date of Birth, prediction & suggestion.">
-    <meta name="keywords" content="numerology, Vriha Numerology, Bbipin K Patel, numerologist, financial numerology, career numerology, life path, birth chart, numerology consultation">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #e8f5e9;
-            color: #1e293b;
-            position: relative;
-            overflow-x: hidden;
-        }
-        
-        /* Loading Animation */
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #e8f5e9;
-            border-top: 4px solid #1e3a8a;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Scroll Animations */
-        .scroll-animate {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        
-        .scroll-animate.animate-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            position: relative;
-            background-color: #e8f5e9;
-        }
-        
-        .parallax::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(232, 245, 233, 0.2);
-        }
-        
-        .section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 4rem 1rem;
-            position: relative;
-            z-index: 10;
-        }
-        
-        .glass-bg {
-            background-color: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 1rem;
-        }
-        
-        .apple-glass-panel {
-            padding: 2rem;
-            border-radius: 1rem;
-            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-            border: 1px solid rgba(255,255,255,0.06);
-            backdrop-filter: blur(14px) saturate(120%);
-            -webkit-backdrop-filter: blur(14px) saturate(120%);
-            transition: transform .35s ease, box-shadow .35s ease;
-        }
-        
-        .apple-glass-panel:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-        }
-        
-        .glass-nav-link {
-            backdrop-filter: blur(10px);
-        }
-        
-        @media (max-width: 768px) {
-            .parallax {
-                background-attachment: scroll;
-            }
-            .section {
-                min-height: auto;
-                padding-top: 6rem;
-                padding-bottom: 2rem;
-            }
-        }
-        
-        .testimonial-container {
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            overflow-x: auto;
-        }
-        
-        .testimonial-item {
-            scroll-snap-align: center;
-            flex-shrink: 0;
-            width: 100%;
-        }
-        
-        .background-number {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20rem;
-            font-weight: bold;
-            color: rgba(30, 58, 138, 0.3);
-            z-index: 0;
-            pointer-events: none;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
-            50% { transform: translate(-50%, -50%) translateY(-20px); }
-        }
-        
-        /* Social Logo Styles */
-        .social-logo-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            width: 32px;
-            height: 32px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            flex-shrink: 0;
-        }
-        
-        .social-logo-link:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-        
-        .social-logo-link:focus {
-            outline: 3px solid #128C7E;
-            outline-offset: 3px;
-        }
-        
-        .social-logo-link svg {
-            fill: white;
-            width: 60%;
-            height: 60%;
-        }
-        
-        .whatsapp-logo-link { 
-            background-color: #25D366; 
-            border-radius: 50%; 
-        }
-        
-        /* Mail Icon Styles */
-        .mail-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #0072c6;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: transform 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
-            text-decoration: none;
-            border: none;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        
-        .mail-icon:focus {
-            outline: 3px solid #004a8f;
-            outline-offset: 3px;
-        }
-        
-        .mail-icon:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-        }
-        
-        .mail-icon svg {
-            width: 60%;
-            height: 60%;
-            display: block;
-            fill: white;
-        }
-        
-        .mail-icon.small { 
-            width: 32px; 
-            height: 32px; 
-            border-radius: 8px; 
-            padding: 5px; 
-        }
-        
-        /* Instagram Logo Styles */
-        .instagram-logo {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 20%;
-            cursor: pointer;
-            transition: transform 0.16s ease, box-shadow 0.16s ease;
-            text-decoration: none;
-            padding: 8px;
-            box-sizing: border-box;
-            background: radial-gradient(circle at 30% 107%,
-            #fdf497 0%, #fdf497 5%,
-            #fd5949 45%, #d6249f 60%, #285AEB 90%);
-        }
-        
-        .instagram-logo:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-        }
-        
-        .instagram-logo svg {
-            width: 60%;
-            height: 60%;
-            fill: white;
-        }
-        
-        .instagram-logo.small { 
-            width: 32px; 
-            height: 32px; 
-            padding: 5px; 
-        }
-        
-        /* Service Card Styles */
-        .service-card {
-            padding: 2rem;
-            background-color: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(30, 58, 138, 0.1), transparent);
-            transition: left 0.5s;
-        }
-        
-        .service-card:hover::before {
-            left: 100%;
-        }
-        
-        /* Floating WhatsApp Button */
-        .floating-whatsapp {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-        
-        .floating-whatsapp:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            }
-            50% {
-                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.1);
-            }
-            100% {
-                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            }
-        }
-        
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: #1e3a8a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-            cursor: pointer;
-        }
-        
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
-        }
-        
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-        }
-        
-        .modal.show {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 1rem;
-            max-width: 500px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideIn 0.3s ease;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #aaa;
-            transition: color 0.3s;
-        }
-        
-        .close-modal:hover {
-            color: #000;
-        }
-        
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #1e3a8a;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e8f5e9;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            background: rgba(255, 255, 255, 0.9);
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #1e3a8a;
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-        
-        .submit-btn {
-            background: #1e3a8a;
-            color: white;
-            padding: 0.75rem 2rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-        
-        .submit-btn:hover {
-            background: #3b82f6;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
-        }
-        
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        /* Social Proof Badge */
-        .social-proof {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(30, 58, 138, 0.9);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            backdrop-filter: blur(10px);
-        }
-        
-        /* Pricing Toggle */
-        .pricing-toggle {
-            margin-top: 1rem;
-            text-align: center;
-        }
-        
-        .toggle-btn {
-            background: rgba(30, 58, 138, 0.1);
-            color: #1e3a8a;
-            border: 2px solid #1e3a8a;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-        
-        .toggle-btn:hover,
-        .toggle-btn.active {
-            background: #1e3a8a;
-            color: white;
-        }
-        
-        .pricing-info {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(30, 58, 138, 0.05);
-            border-radius: 0.5rem;
-            display: none;
-        }
-        
-        .pricing-info.show {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-        
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Auto-playing testimonials indicator */
-        .testimonial-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
-        }
-        
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(30, 58, 138, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .dot.active {
-            background: #1e3a8a;
-            transform: scale(1.2);
-        }
-        
-        /* Notification Toast */
-        .toast {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            background: #25D366;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            z-index: 2001;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-        }
-        
-        .toast.show {
-            transform: translateX(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VRIHA NUMERROLOGY | Expert Numerology Consultation by Bbipin K Patel | Ahmedabad</title>
+  <meta name="description" content="VRIHA NUMERROLOGY by Bbipin K Patel — Expert numerology consultations for financial growth, business naming, career, health & Vastu. 7000+ consultations. Based in Ahmedabad, Gujarat.">
+  <meta name="keywords" content="numerology, Vriha Numerology, Bbipin K Patel, numerologist, financial numerology, career numerology, life path, birth chart, numerology consultation, Ahmedabad numerologist, Vastu consultation, signature customization, name suggestion">
+  <meta name="author" content="Bbipin K Patel">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="VRIHA NUMERROLOGY | Expert Numerology Consultation by Bbipin K Patel">
+  <meta property="og:description" content="Unlock your life's potential through the ancient science of numbers. 7000+ consultations. Vastu, Name Suggestion, Signature & Numerology services in Ahmedabad.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VRIHA NUMERROLOGY | Numerology Consultation by Bbipin K Patel">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "VRIHA NUMERROLOGY",
+    "image": "bbipin-patel.jpg",
+    "description": "Expert numerology consultations for financial growth, business, career, health, and personal matters. Vastu consultation, name suggestion, signature customization.",
+    "url": "https://vrihanumerrology.com",
+    "telephone": "+91-7041527196",
+    "email": "bbipinkpatel24@yahoo.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Gf - 10, Arjun Complex, opp. Radheshyam party plot, near Saurabh School Road, Vijay Nagar, Nava Vadaj",
+      "addressLocality": "Ahmedabad",
+      "addressRegion": "Gujarat",
+      "postalCode": "382480",
+      "addressCountry": "IN"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 23.0734, "longitude": 72.5667 },
+    "openingHours": "Mo-Sa 09:00-18:00",
+    "priceRange": "Rs Rs",
+    "sameAs": ["https://www.instagram.com/vriha_numerrology_24_"],
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "500" }
+  }
+  </script>
+
+  <style>
+    /* ============ DESIGN TOKENS — CREAM WHITE THEME ============ */
+    :root {
+      --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --gold: #b8860b;
+      --gold-bright: #d4a017;
+      --gold-light: #f0c040;
+      --cream: #fdf6e3;
+      --cream-dark: #f5ead0;
+      --cream-deeper: #eddfc0;
+      --text-dark: #2c1810;
+      --text-mid: #5a3e2b;
+      --text-light: #8b6b4e;
+      --navy: #1e3a8a;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ============ FLOATING 24 ============ */
+    .bg-number {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cinzel', serif;
+      font-size: clamp(9rem, 18vw, 20rem);
+      font-weight: 900;
+      color: rgba(184, 134, 11, 0.06);
+      z-index: 0; pointer-events: none; user-select: none;
+      animation: bgFloat 10s ease-in-out infinite;
+    }
+    @keyframes bgFloat {
+      0%,100% { transform: translate(-50%,-50%) translateY(0) rotate(0deg); }
+      50% { transform: translate(-50%,-50%) translateY(-26px) rotate(1.5deg); }
+    }
+
+    /* ============ ANIMATIONS ============ */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+    @keyframes slideDown { from{opacity:0;transform:translateY(-24px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes shimmer { 0%{background-position:0% center} 100%{background-position:200% center} }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    @keyframes scrollCue { 0%,100%{opacity:.3} 50%{opacity:.9} }
+    @keyframes ringPulse { 0%,100%{transform:scale(1);opacity:.4} 50%{transform:scale(1.05);opacity:.9} }
+    @keyframes badgePop { from{opacity:0;transform:scale(0.4) translateY(-8px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    @keyframes waPulse {
+      0%,100% { box-shadow:0 4px 20px rgba(37,211,102,.4); }
+      50% { box-shadow:0 4px 20px rgba(37,211,102,.6),0 0 0 10px rgba(37,211,102,.07); }
+    }
+    @keyframes floatStrip {
+      0%,100% { transform:translateY(0); }
+      50% { transform:translateY(-3px); }
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s var(--ease-spring),transform .7s var(--ease-spring); }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    @media (prefers-reduced-motion:reduce) { .reveal{opacity:1;transform:none;transition:none} .bg-number{animation:none} }
+
+    /* ============ GOLD TEXT ============ */
+    .gold-text {
+      background: linear-gradient(135deg,#7c5a00,#b8860b,#d4a017,#b8860b,#7c5a00);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      background-size:250% auto; animation:shimmer 5s linear infinite;
+    }
+
+    /* ============ NAV ============ */
+    .glass-nav {
+      background: rgba(253,246,227,.92);
+      backdrop-filter: blur(20px) saturate(150%);
+      -webkit-backdrop-filter: blur(20px) saturate(150%);
+      border-bottom: 1px solid rgba(184,134,11,.2);
+      box-shadow: 0 2px 20px rgba(184,134,11,.08);
+    }
+    .nav-link {
+      position:relative; color:var(--text-mid); font-size:.875rem; font-weight:500;
+      letter-spacing:.04em; padding:.4rem .75rem; border-radius:.5rem;
+      transition:color .2s var(--ease-smooth),background .2s; text-decoration:none;
+    }
+    .nav-link:hover { color:var(--gold); background:rgba(184,134,11,.08); }
+    .nav-link::after {
+      content:''; position:absolute; bottom:0; left:50%;
+      width:0; height:2px; background:linear-gradient(90deg,transparent,var(--gold),transparent);
+      border-radius:2px; transition:width .3s var(--ease-spring),left .3s var(--ease-spring);
+    }
+    .nav-link:hover::after { width:80%; left:10%; }
+    #mobile-menu { background:rgba(253,246,227,.98); backdrop-filter:blur(20px); border-top:1px solid rgba(184,134,11,.15); }
+
+    /* ============ SECTIONS ============ */
+    .section { min-height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column; padding:6rem 1rem 4rem; position:relative; z-index:10; }
+    @media(max-width:768px){.section{min-height:auto;padding:5rem 1rem 3rem}}
+
+    /* ============ GLASS CARD (cream style) ============ */
+    .glass-card {
+      background: rgba(255,252,242,.85);
+      backdrop-filter:blur(16px) saturate(120%);
+      -webkit-backdrop-filter:blur(16px) saturate(120%);
+      border: 1px solid rgba(184,134,11,.18);
+      border-radius:1.5rem;
+      box-shadow: 0 8px 40px rgba(184,134,11,.1), 0 2px 8px rgba(0,0,0,.05), inset 0 1px 0 rgba(255,255,255,.8);
+      transition:transform .4s var(--ease-spring),box-shadow .4s var(--ease-spring),border-color .3s;
+    }
+    .glass-card:hover { transform:translateY(-5px); box-shadow:0 20px 50px rgba(184,134,11,.15),0 4px 12px rgba(0,0,0,.08); border-color:rgba(184,134,11,.35); }
+
+    /* ============ SERVICE CARD ============ */
+    .service-card {
+      padding:2rem; background:rgba(255,252,240,.9);
+      border:1px solid rgba(184,134,11,.15); border-radius:1.25rem;
+      box-shadow:0 4px 20px rgba(184,134,11,.08),0 1px 4px rgba(0,0,0,.04);
+      transition:transform .4s var(--ease-spring),box-shadow .4s var(--ease-spring),border-color .3s;
+      position:relative; overflow:hidden;
+    }
+    .service-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:linear-gradient(90deg,transparent,var(--gold-bright),transparent); opacity:0; transition:opacity .3s; }
+    .service-card::after { content:''; position:absolute; inset:0; left:-100%; background:linear-gradient(90deg,transparent,rgba(212,160,23,.06),transparent); transition:left .6s var(--ease-smooth); }
+    .service-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(184,134,11,.15),0 4px 12px rgba(0,0,0,.06); border-color:rgba(184,134,11,.3); }
+    .service-card:hover::before { opacity:1; }
+    .service-card:hover::after { left:100%; }
+
+    /* ============ BUTTONS ============ */
+    .btn-primary {
+      display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
+      background:linear-gradient(135deg,#7c5a00,#b8860b,#d4a017,#b8860b); background-size:250% auto;
+      color:#fff; font-family:'Inter',sans-serif; font-weight:700; font-size:.95rem;
+      letter-spacing:.03em; padding:.85rem 2rem; border:none; border-radius:3rem; cursor:pointer;
+      transition:background-position .4s,transform .3s var(--ease-spring),box-shadow .3s;
+      box-shadow:0 4px 20px rgba(184,134,11,.35); text-decoration:none;
+    }
+    .btn-primary:hover { background-position:right center; transform:translateY(-3px) scale(1.02); box-shadow:0 10px 32px rgba(184,134,11,.5); }
+    .btn-secondary {
+      display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
+      background:transparent; color:var(--gold); font-family:'Inter',sans-serif; font-weight:700;
+      font-size:.95rem; letter-spacing:.03em; padding:.85rem 2rem; border:2px solid var(--gold);
+      border-radius:3rem; cursor:pointer; transition:background .3s,color .3s,transform .3s var(--ease-spring),box-shadow .3s;
+    }
+    .btn-secondary:hover { background:var(--gold); color:#fff; transform:translateY(-3px); box-shadow:0 8px 28px rgba(184,134,11,.35); }
+
+    /* ============ SECTION HEADER ============ */
+    .section-label { font-size:.7rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-bright); margin-bottom:.75rem; }
+    .section-divider { width:56px; height:3px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:0 auto 1.5rem; border-radius:2px; }
+
+    /* ============ STATS ============ */
+    .stat-number { font-family:'Cinzel',serif; font-size:2.2rem; font-weight:700; background:linear-gradient(135deg,#7c5a00,#d4a017); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; }
+
+    /* ============ TESTIMONIALS ============ */
+    .t-container { overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+    .t-container::-webkit-scrollbar { display:none; }
+    .t-item { scroll-snap-align:center; flex-shrink:0; width:100%; }
+    .dot { width:8px; height:8px; border-radius:50%; background:rgba(184,134,11,.25); cursor:pointer; transition:all .35s var(--ease-spring); }
+    .dot.active { background:var(--gold); transform:scale(1.2); width:22px; border-radius:4px; }
+
+    /* ============ CONTACT ============ */
+    .c-item { display:flex; align-items:center; gap:.75rem; padding:.85rem 1.2rem; background:rgba(255,252,240,.8); border:1px solid rgba(184,134,11,.12); border-radius:.85rem; transition:background .2s,border-color .2s,transform .2s; cursor:pointer; text-decoration:none; }
+    .c-item:hover { background:rgba(255,248,220,.95); border-color:rgba(184,134,11,.3); transform:translateY(-2px); box-shadow:0 4px 16px rgba(184,134,11,.12); }
+
+    /* ============ SOCIAL ICONS ============ */
+    .s-icon { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; cursor:pointer; flex-shrink:0; transition:transform .25s var(--ease-spring); }
+    .s-icon:hover { transform:scale(1.15); }
+    .s-icon svg { fill:white; width:55%; height:55%; }
+    .wa-ic { background:#25D366; }
+    .mail-ic { background:#0072c6; border-radius:10px; padding:6px; border:none; cursor:pointer; transition:transform .2s var(--ease-spring),box-shadow .2s; width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center; }
+    .mail-ic:hover { transform:translateY(-3px); box-shadow:0 6px 18px rgba(0,114,198,.4); }
+    .mail-ic svg { width:60%; height:60%; fill:white; display:block; }
+    .ig-ic { border-radius:20%; padding:6px; background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%); width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .2s var(--ease-spring),box-shadow .2s; }
+    .ig-ic:hover { transform:scale(1.15); box-shadow:0 6px 18px rgba(214,36,159,.35); }
+    .ig-ic svg { width:60%; height:60%; fill:white; }
+
+    /* ============ PRICING ============ */
+    .pricing-toggle { margin-top:1rem; text-align:center; }
+    .toggle-btn { background:rgba(184,134,11,.08); color:var(--gold); border:1px solid rgba(184,134,11,.25); padding:.35rem 1rem; border-radius:2rem; cursor:pointer; font-size:.82rem; font-weight:500; letter-spacing:.04em; transition:all .25s; }
+    .toggle-btn:hover,.toggle-btn.active { background:var(--gold); color:#fff; border-color:var(--gold); }
+    .pricing-info { margin-top:.65rem; padding:.75rem 1rem; background:rgba(255,248,210,.8); border:1px solid rgba(184,134,11,.2); border-radius:.65rem; display:none; }
+    .pricing-info.show { display:block; animation:fadeUp .3s var(--ease-spring); }
+
+    /* ============ MODAL ============ */
+    .modal { display:none; position:fixed; inset:0; z-index:2000; background:rgba(44,24,16,.7); backdrop-filter:blur(8px); }
+    .modal.show { display:flex; align-items:center; justify-content:center; animation:fadeIn .3s var(--ease-smooth); }
+    .modal-content { background:linear-gradient(145deg,#fffbf0,#fdf0d0); border:1px solid rgba(184,134,11,.25); padding:2.5rem; border-radius:1.5rem; max-width:520px; width:90%; max-height:90vh; overflow-y:auto; position:relative; animation:slideDown .4s var(--ease-spring); box-shadow:0 30px 70px rgba(44,24,16,.25),0 0 40px rgba(184,134,11,.1); }
+    .close-modal { position:absolute; top:1rem; right:1.25rem; font-size:1.75rem; font-weight:300; cursor:pointer; color:var(--text-light); transition:color .2s,transform .3s var(--ease-spring); line-height:1; background:none; border:none; }
+    .close-modal:hover { color:var(--gold); transform:rotate(90deg); }
+
+    /* ============ FORM ============ */
+    .form-group { margin-bottom:1.2rem; }
+    .form-group label { display:block; margin-bottom:.35rem; font-size:.78rem; font-weight:600; color:var(--gold); letter-spacing:.08em; text-transform:uppercase; }
+    .form-group input,.form-group select,.form-group textarea { width:100%; padding:.72rem 1rem; background:rgba(255,252,240,.9); border:1.5px solid rgba(184,134,11,.2); border-radius:.65rem; font-size:.9rem; color:var(--text-dark); font-family:'Inter',sans-serif; transition:border-color .25s,background .25s,box-shadow .25s; }
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus { outline:none; border-color:var(--gold); background:#fffdf5; box-shadow:0 0 0 3px rgba(184,134,11,.12); }
+    .form-group select option { background:#fffdf5; color:var(--text-dark); }
+    .form-group textarea { resize:vertical; min-height:88px; }
+
+    /* ============ SPINNER ============ */
+    .spinner { width:22px; height:22px; border:3px solid rgba(255,255,255,.3); border-top-color:#fff; border-radius:50%; animation:spin .8s linear infinite; margin:0 auto; }
+
+    /* ============ FLOATING WHATSAPP ============ */
+    .floating-wa { position:fixed; bottom:24px; right:24px; width:60px; height:60px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,.45); z-index:1000; transition:transform .3s var(--ease-spring),box-shadow .3s; animation:waPulse 3s ease-in-out infinite; }
+    .floating-wa:hover { transform:scale(1.15); box-shadow:0 8px 30px rgba(37,211,102,.65); animation:none; }
+
+    /* ============ FLOATING CONTACT STRIP ============ */
+    .contact-strip {
+      position: fixed;
+      bottom: 92px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 999;
+    }
+    .strip-btn {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(0,0,0,.15);
+      transition: all .3s var(--ease-spring);
+      overflow: hidden;
+      white-space: nowrap;
+      justify-content: center;
+    }
+    .strip-btn:hover {
+      width: auto;
+      padding: 0 16px 0 10px;
+      border-radius: 30px;
+    }
+    .strip-btn .strip-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .strip-btn .strip-label {
+      font-size: .8rem;
+      font-weight: 600;
+      color: white;
+      max-width: 0;
+      overflow: hidden;
+      transition: max-width .3s var(--ease-spring), opacity .3s;
+      opacity: 0;
+      letter-spacing: .02em;
+    }
+    .strip-btn:hover .strip-label { max-width: 140px; opacity: 1; }
+    .strip-phone { background: linear-gradient(135deg, #0072c6, #005fa3); }
+    .strip-email { background: linear-gradient(135deg, #0072c6, #0094d4); }
+    .strip-ig { background: radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%); }
+    .strip-maps { background: linear-gradient(135deg, #ea4335, #c62828); }
+    .strip-btn svg { fill:white; width:22px; height:22px; flex-shrink:0; }
+
+    /* ============ BACK TO TOP ============ */
+    .back-top { position:fixed; bottom:24px; left:24px; width:48px; height:48px; background:linear-gradient(135deg,var(--gold),var(--gold-bright)); border:none; border-radius:50%; display:flex; align-items:center; justify-content:center; opacity:0; visibility:hidden; transition:all .35s var(--ease-spring); z-index:999; cursor:pointer; color:#fff; box-shadow:0 4px 16px rgba(184,134,11,.3); }
+    .back-top.show { opacity:1; visibility:visible; }
+    .back-top:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(184,134,11,.45); }
+
+    /* ============ TOAST ============ */
+    .toast { position:fixed; top:88px; right:20px; background:rgba(44,24,16,.95); border:1px solid var(--gold); color:#fdf6e3; padding:.9rem 1.4rem; border-radius:.85rem; box-shadow:0 8px 30px rgba(0,0,0,.25); z-index:2001; transform:translateX(440px); transition:transform .4s var(--ease-spring); max-width:320px; font-size:.88rem; }
+    .toast.show { transform:translateX(0); }
+
+    /* ============ PROOF BADGE ============ */
+    .proof-badge { position:fixed; top:78px; right:16px; background:linear-gradient(135deg,#7c5a00,var(--gold)); color:#fff; padding:.35rem .9rem; border-radius:2rem; font-size:.74rem; font-weight:700; z-index:100; box-shadow:0 4px 18px rgba(184,134,11,.35); animation:badgePop .5s var(--ease-bounce) 1.2s both; letter-spacing:.03em; white-space:nowrap; }
+
+    /* ============ PROFILE ============ */
+    .profile-img { filter:drop-shadow(0 0 18px rgba(184,134,11,.25)); transition:filter .4s; }
+    .profile-img:hover { filter:drop-shadow(0 0 32px rgba(184,134,11,.45)); }
+
+    /* ============ MISC ============ */
+    .cinzel { font-family:'Cinzel',serif; }
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-track { background:var(--cream); }
+    ::-webkit-scrollbar-thumb { background:rgba(184,134,11,.25); border-radius:3px; }
+    ::-webkit-scrollbar-thumb:hover { background:var(--gold); }
+
+    /* Hero gradient overlay for cream */
+    .hero-overlay { background:radial-gradient(ellipse 80% 55% at 50% 38%,rgba(212,160,23,.08) 0%,transparent 70%); }
+  </style>
 </head>
-<body class="bg-[#e8f5e9]">
-    <!-- Background Number -->
-    <div class="background-number hidden md:block">24</div>
 
-    <!-- Social Proof Badge -->
-    <div class="social-proof">
-        🌟 500+ Happy Clients
-    </div>
+<body>
+  <!-- Floating 24 -->
+  <div class="bg-number hidden md:block" aria-hidden="true">24</div>
+  <div class="proof-badge" aria-label="500 plus happy clients">&#11088; 500+ Happy Clients</div>
 
-    <!-- Header -->
-    <header class="fixed top-0 left-0 w-full z-50 py-4 glass-bg shadow-lg">
-        <nav class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#home" class="text-2xl font-bold tracking-widest text-[#1e3a8a]">VRIHA <span class="text-[#1e3a8a]">NUMERROLOGY</span></a>
-            <ul class="hidden md:flex space-x-4 items-center">
-                <li><a href="#about" class="glass-nav-link text-[#FFD700] hover:text-[#1e3a8a] transition duration-300 bg-white/10 rounded-full px-4 py-2">About</a></li>
-                <li><a href="#services" class="glass-nav-link text-[#FFD700] hover:text-[#1e3a8a] transition duration-300 bg-white/10 rounded-full px-4 py-2">Services</a></li>
-                <li><a href="#testimonials" class="glass-nav-link text-[#FFD700] hover:text-[#1e3a8a] transition duration-300 bg-white/10 rounded-full px-4 py-2">Testimonials</a></li>
-                <li><a href="#contact" class="glass-nav-link text-[#FFD700] hover:text-[#1e3a8a] transition duration-300 bg-white/10 rounded-full px-4 py-2">Contact</a></li>
-                <li><button id="booking-btn" class="bg-[#FFD700] text-white px-4 py-2 rounded-full hover:bg-[#3b82f6] transition duration-300">Book Now</button></li>
-            </ul>
-            <button id="mobile-menu-button" class="md:hidden text-[#1e293b] focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-[#dcedc8] mt-4 py-2 px-6 rounded-lg mx-4">
-            <ul class="flex flex-col space-y-4 text-center">
-                <li><a href="#about" class="text-[#1e293b] hover:text-[#1e3a8a] transition duration-300">About</a></li>
-                <li><a href="#services" class="text-[#1e293b] hover:text-[#1e3a8a] transition duration-300">Services</a></li>
-                <li><a href="#testimonials" class="text-[#1e293b] hover:text-[#1e3a8a] transition duration-300">Testimonials</a></li>
-                <li><a href="#contact" class="text-[#1e293b] hover:text-[#1e3a8a] transition duration-300">Contact</a></li>
-                <li><button id="mobile-booking-btn" class="bg-[#1e3a8a] text-white px-4 py-2 rounded-full hover:bg-[#3b82f6] transition duration-300 w-full">Book Now</button></li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="relative z-10">
-        <!-- Home Section -->
-        <section id="home" class="section parallax flex-col text-center text-[#1e293b] scroll-animate">
-            <div class="relative z-10 p-6 md:p-12 glass-bg rounded-2xl max-w-4xl mx-auto shadow-xl">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-[#ffd700]">Unlock Your Life's Potential</h1>
-                <h2 class="text-[#ffd700] md:text-2xl font-mid dark mb-8">Guided By The Wisdom of Numbers And Planets.</h2>
-                <p class="text-[#FACC15] md:text-xl font-light mb-10">Numerology And Signature Consultation for Financial Growth, Business, Company Name, Career, Health, Personal Matters based on analysis of Date of Birth, Prediction & Suggestion.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#contact" class="px-8 py-4 bg-[#1e3a8a] text-[#ffffff] font-bold text-lg rounded-full shadow-lg hover:bg-[#3b82f6] transition-transform duration-300 transform hover:scale-105">Book a Reading</a>
-                    <button id="hero-booking-btn" class="px-8 py-4 bg-transparent border-2 border-[#1e3a8a] text-[#1e3a8a] font-bold text-lg rounded-full hover:bg-[#1e3a8a] hover:text-white transition duration-300">Quick Booking</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="section scroll-animate">
-            <div class="container mx-auto px-6 max-w-6xl apple-glass-panel">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#1e3a8a]">Meet Bbipin K Patel</h2>
-                <div class="flex flex-col md:flex-row items-center md:space-x-12">
-                    <div class="flex-shrink-0 mb-8 md:mb-0">
-                        <img src="bbipin-patel.jpg" alt="Bbipin K Patel - Numerologist" class="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-[#1e3a8a] shadow-2xl hover:shadow-3xl transition-all duration-300">
-                    </div>
-                    <div class="text-lg leading-relaxed text-center md:text-left text-[#1e293b]">
-                        <p class="mb-4">Greetings! I am Bbipin K Patel, a seasoned numerologist with a deep passion for helping individuals navigate their life's journey through the ancient science of numbers. For years, I have provided personalized consultations, blending traditional numerological principles with intuitive guidance to help clients achieve their goals.</p>
-                        <p class="mb-4">At VRIHA NUMERROLOGY, my mission is to empower you to make informed decisions and unlock your full potential. Whether it's optimizing your business name for success, choosing a rewarding career path, or understanding your personal relationships, numbers hold the key to a more harmonious life.</p>
-                        <p>I believe that every number tells a story, and I am here to help you read yours. My approach is rooted in compassion, integrity, and a commitment to your well-being. Let's embark on this journey together.</p>
-                        <div class="mt-6 text-center md:text-left">
-                            <span class="inline-block bg-[#25D366] text-white px-4 py-2 rounded-full text-sm font-semibold mr-2 mb-2">7000+ Consultations</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="section scroll-animate">
-            <div class="container mx-auto px-6 max-w-6xl apple-glass-panel">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#1e3a8a]">Our Services</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-                    <div class="service-card text-center">
-                        <div class="text-4xl mb-4">🏠</div>
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1e3a8a]">Vastu Consultation</h3>
-                        <p class="text-base text-[#1e293b] mb-4">We offer expert Vastu consultation for your Home, Office, and Factory to create a positive and prosperous environment.</p>
-                        <div class="pricing-toggle">
-                            <button class="toggle-btn" data-service="vastu">View Pricing</button>
-                            <div class="pricing-info" data-pricing="vastu">
-                                <div class="text-sm text-[#1e3a8a] font-semibold">Starting from ₹5,100 / $55</div>
-                                <div class="text-xs text-[#1e293b] mt-1">Home: ₹5,100 / $55 | Office: ₹5,100 / $55 | Factory: ₹15,000 / $169</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="service-card text-center">
-                        <div class="text-4xl mb-4">✨</div>
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1e3a8a]">Name Suggestion</h3>
-                        <p class="text-base text-[#1e293b] mb-4">Receive personalized name suggestions that align with your birth date to bring you luck and success in all areas of life.</p>
-                        <div class="pricing-toggle">
-                            <button class="toggle-btn" data-service="name">View Pricing</button>
-                            <div class="pricing-info" data-pricing="name">
-                                <div class="text-sm text-[#1e3a8a] font-semibold">Starting from ₹3,300 | $46</div>
-                                <div class="text-xs text-[#1e293b] mt-1">Business/Baby : ₹3,300 | $46</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="service-card text-center">
-                        <div class="text-4xl mb-4">✍️</div>
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1e3a8a]">Signature Customization</h3>
-                        <p class="text-base text-[#1e293b] mb-4">Get a customized signature design based on your birth date to enhance your personality and attract positive energy.</p>
-                        <div class="pricing-toggle">
-                            <button class="toggle-btn" data-service="signature">View Pricing</button>
-                            <div class="pricing-info" data-pricing="signature">
-                                <div class="text-sm text-[#1e3a8a] font-semibold">Starting from ₹4,600 / $51</div>
-                                <div class="text-xs text-[#1e293b] mt-1">Premium: ₹4,600 / $51</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="service-card text-center">
-                        <div class="text-4xl mb-4">🔮</div>
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1e3a8a]">Numerology Consultation</h3>
-                        <p class="text-base text-[#1e293b] mb-4">Comprehensive numerology consultation for financial growth, business, career, health, and personal matters based on your date of birth and its prediction.</p>
-                        <div class="pricing-toggle">
-                            <button class="toggle-btn" data-service="numerology">View Pricing</button>
-                            <div class="pricing-info" data-pricing="numerology">
-                                <div class="text-sm text-[#1e3a8a] font-semibold">Starting from ₹4,600 / $51</div>
-                                <div class="text-xs text-[#1e293b] mt-1">Detailed:₹4,600 / $51</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="section scroll-animate">
-            <div class="container mx-auto px-6 max-w-6xl apple-glass-panel">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#1e3a8a]">What Clients Say</h2>
-                <div class="relative w-full overflow-hidden">
-                    <div id="testimonial-slider" class="flex transition-transform duration-500 ease-in-out testimonial-container">
-                        <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
-                            <div class="flex justify-center mb-4">
-                                <div class="flex text-yellow-400">
-                                    <span class="text-2xl">⭐⭐⭐⭐⭐</span>
-                                </div>
-                            </div>
-                            <p class="text-lg italic text-[#1e293b] mb-4">"I'm truly grateful to Vriha Numerology for being a constant guiding light throughout my visa process. Their predictions were incredibly accurate, and I believe their influence played a significant role in the successful outcome of my visa application. Their guidance was a symbol of trust and gave me the confidence and positivity I needed."</p>
-                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Dhruv Bhatt</p>
-                        </div>
-                        <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
-                            <div class="flex justify-center mb-4">
-                                <div class="flex text-yellow-400">
-                                    <span class="text-2xl">⭐⭐⭐⭐⭐</span>
-                                </div>
-                            </div>
-                            <p class="text-lg italic text-[#1e293b] mb-4">"I had a very positive experience with Vriha Numerology. Bbipin Patel is highly knowledgeable, calm, and genuinely dedicated to helping people. His insights were accurate and deeply meaningful, and he explained everything with patience and clarity. I left with a stronger sense of direction and renewed positivity. Highly recommended!"</p>
-                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Apurva Patel</p>
-                        </div>
-                        <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
-                            <div class="flex justify-center mb-4">
-                                <div class="flex text-yellow-400">
-                                    <span class="text-2xl">⭐⭐⭐⭐⭐</span>
-                                </div>
-                            </div>
-                            <p class="text-lg italic text-[#1e293b] mb-4">"Vriha Numerology is the best! After getting my name and signature corrected, I was shocked by the sudden progress my career made. With the remedies provided by Bipin K. Patel, my USA process showed sudden and positive changes. He gave me valuable suggestions and guidance whenever needed, which helped me feel much more balanced."</p>
-                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Neell Patel</p>
-                        </div>
-                        <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
-                            <div class="flex justify-center mb-4">
-                                <div class="flex text-yellow-400">
-                                    <span class="text-2xl">⭐⭐⭐⭐⭐</span>
-                                </div>
-                            </div>
-                            <p class="text-lg italic text-[#1e293b] mb-4">"I had an amazing experience with Bipinbhai. His insights into numerology and Vastu Shastra brought a positive shift in my life, especially in terms of health, and he offers practical, easy-to-practice solutions. His readings are incredibly accurate and he takes the time to listen and explain everything clearly. It was a truly valuable experience."</p>
-                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Jolly Patel</p>
-                        </div>
-                        <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
-                            <div class="flex justify-center mb-4">
-                                <div class="flex text-yellow-400">
-                                    <span class="text-2xl">⭐⭐⭐⭐⭐</span>
-                                </div>
-                            </div>
-                            <p class="text-lg italic text-[#1e293b] mb-4">"My professional life was in a rut. Bipin K. Patel's guidance on my business name and signature was a game-changer. Within weeks, I saw a noticeable increase in client inquiries and revenue. His insights are not just about numbers; they are about tangible results. I am extremely satisfied."</p>
-                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Mitesh Shah</p>
-                        </div>
-                        <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
-                            <div class="flex justify-center mb-4">
-                                <div class="flex text-yellow-400">
-                                    <span class="text-2xl">⭐⭐⭐⭐⭐</span>
-                                </div>
-                            </div>
-                            <p class="text-lg italic text-[#1e293b] mb-4">"I was skeptical at first, but after a consultation with Bipinbhai, I'm a believer. He provided me with a clear and concise numerology report that explained my life's challenges and opportunities. His practical advice helped me improve my relationships and gain clarity about my future. Highly recommend his services to anyone seeking direction."</p>
-                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Sneha Desai</p>
-                        </div>
-                        <div class="testimonial-item p-6 md:p-12 glass-bg rounded-2xl shadow-xl mx-2">
-                            <div class="flex justify-center mb-4">
-                                <div class="flex text-yellow-400">
-                                    <span class="text-2xl">⭐⭐⭐⭐⭐</span>
-                                </div>
-                            </div>
-                            <p class="text-lg italic text-[#1e293b] mb-4">"VRIHA NUMERROLOGY has been instrumental in my personal growth. Bbipin K. Patel's readings are not only accurate but also delivered with great empathy. The health-related suggestions he gave me were simple yet effective, and I have felt a positive change in my overall well-being. A truly genuine and kind professional."</p>
-                            <p class="text-right text-base font-semibold text-[#1e3a8a]">- Rajesh Sharma</p>
-                        </div>
-                    </div>
-                    <!-- Navigation Buttons -->
-                    <button id="prev-testimonial" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white text-[#1e293b] p-2 rounded-full shadow-lg ml-2 hover:bg-[#1e3a8a] hover:text-white transition-colors duration-300 z-10 hidden md:block">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                    </button>
-                    <button id="next-testimonial" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white text-[#1e293b] p-2 rounded-full shadow-lg mr-2 hover:bg-[#1e3a8a] hover:text-white transition-colors duration-300 z-10 hidden md:block">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                    </button>
-                    <!-- Dot Indicators -->
-                    <div class="testimonial-dots" id="testimonial-dots"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="section scroll-animate">
-            <div class="container mx-auto px-6 max-w-4xl apple-glass-panel">
-                <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-[#1e3a8a]">Contact & Booking</h2>
-                <div class="p-8 glass-bg rounded-2xl shadow-xl text-center">
-                    <h3 class="text-2xl font-semibold mb-4 text-[#1e3a8a]">Get in Touch</h3>
-                    <p class="mb-6 text-[#1e293b]">Ready to start your journey? Contact me to book a personalized numerology reading.</p>
-                    <ul class="space-y-4 flex flex-col items-center">
-                        <li class="flex items-center space-x-2">
-                            <span class="font-semibold text-[#1e3a8a]">Phone:</span>
-                            <a href="https://wa.me/917041527196" target="_blank" rel="noopener noreferrer" class="social-logo-link whatsapp-logo-link">
-                                <svg viewBox="0 0 32 32" aria-hidden="true">
-                                    <path d="M16.002 2.933c-7.255 0-13.143 5.888-13.143 13.143 0 2.315.6 4.577 1.746 6.583l-1.858 6.794 6.963-1.83c1.918 1.047 4.084 1.598 6.292 1.598h.001c7.255 0 13.143-5.888 13.143-13.143 0-3.514-1.368-6.82-3.855-9.307s-5.793-3.838-9.289-3.838zm0 23.919c-1.912 0-3.776-.51-5.395-1.474l-.385-.229-4.134 1.087 1.106-4.043-.25-.414c-1.04-1.72-1.59-3.698-1.59-5.743 0-6.102 4.963-11.065 11.065-11.065 2.955 0 5.732 1.151 7.818 3.238s3.235 4.872 3.235 7.809c0 6.101-4.963 11.064-11.065 11.064zm6.13-8.288c-.335-.167-1.983-.979-2.29-1.09-.307-.112-.53-.167-.754.167s-.864 1.09-1.059 1.314c-.195.223-.391.25-.726.083-.335-.167-1.414-.52-2.692-1.66-.994-.886-1.663-1.979-1.858-2.314-.195-.334-.021-.514.146-.68.15-.149.335-.391.503-.586.168-.195.224-.334.336-.557.112-.223.056-.417-.028-.584-.083-.167-.754-1.812-1.034-2.482-.272-.652-.55-.563-.754-.572-.195-.008-.419-.01-.644-.01-.223 0-.586.083-.892.417-.307.334-1.171 1.143-1.171 2.785s1.199 3.232 1.367 3.456c.168.223 2.356 3.6 5.71 5.041.799.345 1.422.551 1.908.705.801.255 1.53.219 2.106.132.642-.096 1.983-.811 2.263-1.593.279-.782.279-1.453.195-1.593-.084-.14-.307-.223-.642-.39z"/>
-                                </svg>
-                            </a>
-                            <span class="text-[#1e293b]">+91 70415 27196</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <span class="font-semibold text-[#1e3a8a]">Email:</span>
-                            <a
-                                class="mail-icon small"
-                                id="mailButton"
-                                href="mailto:bbipinkpatel24@yahoo.com"
-                                aria-label="Send email to bbipinkpatel24@yahoo.com"
-                                title="Email bbipinkpatel24@yahoo.com"
-                                role="button"
-                            >
-                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                    <path d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11A2.5 2.5 0 0 1 19.5 20h-15A2.5 2.5 0 0 1 2 17.5v-11zM4.5 6C4.224 6 4 6.224 4 6.5v.217l8 5.333 8-5.333V6.5c0-.276-.224-.5-.5-.5h-15zM20 8.383l-7.235 4.82a1 1 0 0 1-1.03 0L4 8.383V17.5c0 .276.224.5.5.5h15c.276 0 .5-.224.5-.5V8.383z"/>
-                                </svg>
-                            </a>
-                            <span class="text-[#1e293b]">bbipinkpatel24@yahoo.com</span>
-                        </li>
-                        <li class="flex items-center space-x-2">
-                            <span class="font-semibold text-[#1e3a8a]">Instagram:</span>
-                            <a
-                                class="instagram-logo small"
-                                id="instagramButton"
-                                href="https://www.instagram.com/vriha_numerrology_24_"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Visit our Instagram profile"
-                                title="Follow us on Instagram"
-                                role="button"
-                            >
-                                <svg viewBox="0 0 448 512" aria-hidden="true" focusable="false">
-                                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9S160.5 370.9 224.1 370.9 339 319.6 339 255.9 287.7 141 224.1 141zm0 190.6c-41.8 0-75.7-33.9-75.7-75.7s33.9-75.7 75.7-75.7 75.7 33.9 75.7 75.7-33.9 75.7-75.7 75.7zm146.4-194.3c0 14.9-12.1 27-27 27-14.9 0-27-12.1-27-27s12.1-27 27-27 27 12.1 27 27zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.9 1.7-67.7 9.9-93.9 36.2-26.2 26.2-34.4 58-36.2 93.9-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9 26.2 26.2 58 34.4 93.9 36.2 37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 58-34.4 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
-                                </svg>
-                            </a>
-                            <span class="text-[#1e293b]">vriha_numerrology_24_</span>
-                        </li>
-                          <li class="flex items-center space-x-2">
-                           <span class="text-xs"><strong>⚡ Fast Response</strong></span>
-                           <span class="text-xs"><strong>🔒 Confidential</strong></span>
-                           <span class="text-xs"><strong>🎯 Accurate Predictions</strong></span>
-                        </li>
-                        </li>
-                          <li class="flex items-center space-x-2">
-                           <span class="text-xs"><strong>Address:</strong>Gf - 10, Arjun Complex, opp. Radheshyam party plot, near Saurabh School Road, Vijay Nagar, Nava Vadaj, Ahmedabad, Gujarat 382480</span>
-                           
-                        </li>
-                    </ul>
-                    <div class="mt-8">
-                        <button id="main-booking-btn" class="px-8 py-4 bg-[#1e3a8a] text-white font-bold text-lg rounded-full hover:bg-[#3b82f6] transition-all duration-300 transform hover:scale-105 shadow-lg">
-                            📅 Book Consultation Now
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/917041527196?text=Hello%2C%20I%20would%20like%20to%20book%20a%20numerology%20consultation." target="_blank" rel="noopener noreferrer" class="floating-whatsapp" title="Chat on WhatsApp">
-        <svg width="30" height="30" viewBox="0 0 32 32" fill="white">
-            <path d="M16.002 2.933c-7.255 0-13.143 5.888-13.143 13.143 0 2.315.6 4.577 1.746 6.583l-1.858 6.794 6.963-1.83c1.918 1.047 4.084 1.598 6.292 1.598h.001c7.255 0 13.143-5.888 13.143-13.143 0-3.514-1.368-6.82-3.855-9.307s-5.793-3.838-9.289-3.838zm0 23.919c-1.912 0-3.776-.51-5.395-1.474l-.385-.229-4.134 1.087 1.106-4.043-.25-.414c-1.04-1.72-1.59-3.698-1.59-5.743 0-6.102 4.963-11.065 11.065-11.065 2.955 0 5.732 1.151 7.818 3.238s3.235 4.872 3.235 7.809c0 6.101-4.963 11.064-11.065 11.064zm6.13-8.288c-.335-.167-1.983-.979-2.29-1.09-.307-.112-.53-.167-.754.167s-.864 1.09-1.059 1.314c-.195.223-.391.25-.726.083-.335-.167-1.414-.52-2.692-1.66-.994-.886-1.663-1.979-1.858-2.314-.195-.334-.021-.514.146-.68.15-.149.335-.391.503-.586.168-.195.224-.334.336-.557.112-.223.056-.417-.028-.584-.083-.167-.754-1.812-1.034-2.482-.272-.652-.55-.563-.754-.572-.195-.008-.419-.01-.644-.01-.223 0-.586.083-.892.417-.307.334-1.171 1.143-1.171 2.785s1.199 3.232 1.367 3.456c.168.223 2.356 3.6 5.71 5.041.799.345 1.422.551 1.908.705.801.255 1.53.219 2.106.132.642-.096 1.983-.811 2.263-1.593.279-.782.279-1.453.195-1.593-.084-.14-.307-.223-.642-.39z"/>
-        </svg>
+  <!-- ===== FLOATING CONTACT STRIP ===== -->
+  <!-- Always visible on every page, expand on hover to show label -->
+  <div class="contact-strip" aria-label="Quick contact">
+    <!-- Phone / WhatsApp -->
+    <a href="https://wa.me/917041527196?text=Hello%2C%20I%20would%20like%20to%20enquire%20about%20your%20services." target="_blank" rel="noopener noreferrer" class="strip-btn strip-phone" title="Call / WhatsApp: +91 70415 27196" aria-label="Call or WhatsApp us">
+      <span class="strip-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.5 11.5 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.5 11.5 0 00.57 3.6 1 1 0 01-.24 1.01l-2.21 2.18z"/></svg>
+      </span>
+      <span class="strip-label">+91 70415 27196</span>
     </a>
+    <!-- Email -->
+    <a href="mailto:bbipinkpatel24@yahoo.com?subject=Numerology%20Consultation%20Enquiry" class="strip-btn strip-email" title="Email: bbipinkpatel24@yahoo.com" aria-label="Send email">
+      <span class="strip-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+      </span>
+      <span class="strip-label">Send Email</span>
+    </a>
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/vriha_numerrology_24_" target="_blank" rel="noopener noreferrer" class="strip-btn strip-ig" title="Instagram: @vriha_numerrology_24_" aria-label="Follow on Instagram">
+      <span class="strip-icon">
+        <svg viewBox="0 0 448 512" aria-hidden="true"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9S160.5 370.9 224.1 370.9 339 319.6 339 255.9 287.7 141 224.1 141zm0 190.6c-41.8 0-75.7-33.9-75.7-75.7s33.9-75.7 75.7-75.7 75.7 33.9 75.7 75.7-33.9 75.7-75.7 75.7zm146.4-194.3c0 14.9-12.1 27-27 27-14.9 0-27-12.1-27-27s12.1-27 27-27 27 12.1 27 27zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.9 1.7-67.7 9.9-93.9 36.2-26.2 26.2-34.4 58-36.2 93.9-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9 26.2 26.2 58 34.4 93.9 36.2 37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+      </span>
+      <span class="strip-label">@vriha_numerrology</span>
+    </a>
+    <!-- Google Maps -->
+    <a href="https://maps.app.goo.gl/UhDEdM3y9oEiJX6z8" target="_blank" rel="noopener noreferrer" class="strip-btn strip-maps" title="Get Directions on Google Maps" aria-label="Open location in Google Maps">
+      <span class="strip-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </span>
+      <span class="strip-label">Get Directions</span>
+    </a>
+  </div>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top" title="Back to Top">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-        </svg>
-    </button>
+  <!-- ===== HEADER ===== -->
+  <header class="fixed top-0 left-0 w-full z-50 py-3 glass-nav">
+    <nav class="container mx-auto px-6 flex justify-between items-center max-w-7xl">
+      <a href="#home" class="cinzel text-xl font-bold tracking-widest">
+        <span class="gold-text">VRIHA</span>
+        <span style="color:var(--text-mid)" class="ml-1">NUMERROLOGY</span>
+      </a>
+      <ul class="hidden md:flex items-center space-x-1">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li class="ml-3"><button id="booking-btn" class="btn-primary text-sm px-5 py-2">Book Now</button></li>
+      </ul>
+      <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-amber-50 transition focus:outline-none" style="color:var(--text-mid)" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+      </button>
+    </nav>
+    <div id="mobile-menu" class="hidden md:hidden mt-2 py-4 px-6 mx-4 rounded-xl">
+      <ul class="flex flex-col space-y-2 text-center">
+        <li><a href="#about" class="block py-2 transition text-sm tracking-wide" style="color:var(--text-mid)">About</a></li>
+        <li><a href="#services" class="block py-2 transition text-sm tracking-wide" style="color:var(--text-mid)">Services</a></li>
+        <li><a href="#testimonials" class="block py-2 transition text-sm tracking-wide" style="color:var(--text-mid)">Testimonials</a></li>
+        <li><a href="#contact" class="block py-2 transition text-sm tracking-wide" style="color:var(--text-mid)">Contact</a></li>
+        <li class="pt-2"><button id="mobile-booking-btn" class="btn-primary w-full">Book Now</button></li>
+      </ul>
+    </div>
+  </header>
 
-    <!-- Booking Modal -->
-    <div id="booking-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-modal">&times;</span>
-            <h2 class="text-2xl font-bold text-[#1e3a8a] mb-6 text-center">Book Your Consultation</h2>
-            <form id="booking-form">
-                <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div class="form-group">
-                    <label for="birthdate">Date of Birth *</label>
-                    <input type="date" id="birthdate" name="birthdate" required>
-                </div>
-                <div class="form-group">
-                    <label for="service">Service Needed *</label>
-                    <select id="service" name="service" required>
-                        <option value="">Select a service</option>
-                        <option value="numerology">Numerology Consultation</option>
-                        <option value="vastu">Vastu Consultation</option>
-                        <option value="name">Name Suggestion</option>
-                        <option value="signature">Signature Customization</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="consultation-type">Consultation Type *</label>
-                    <select id="consultation-type" name="consultation-type" required>
-                        <option value="">Select consultation type</option>
-                        <option value="phone">Phone Consultation</option>
-                        <option value="video">Video Call</option>
-                        <option value="in-person">In-Person Meeting</option>
-                        <option value="whatsapp">WhatsApp Chat</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Tell us about your specific concerns or questions</label>
-                    <textarea id="message" name="message" placeholder="Please describe what you'd like to discuss during the consultation..."></textarea>
-                </div>
-                <button type="submit" class="submit-btn" id="submit-btn">
-                    <span class="button-text">Book Consultation</span>
-                    <div class="loading-spinner" style="display: none;"></div>
-                </button>
-            </form>
+  <main class="relative z-10">
+
+    <!-- ===== HERO ===== -->
+    <section id="home" class="section min-h-screen text-center">
+      <div class="absolute inset-0 z-0 pointer-events-none hero-overlay"></div>
+      <div class="relative z-10 px-4 max-w-5xl mx-auto">
+
+        <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8 reveal" style="background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2)" data-delay="0">
+          <span style="color:var(--gold-bright)" class="text-sm">&#10022;</span>
+          <span class="text-xs font-medium tracking-widest uppercase" style="color:var(--text-light)">Numerology &amp; Vastu Consultation</span>
+          <span style="color:var(--gold-bright)" class="text-sm">&#10022;</span>
         </div>
-    </div>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <span id="toast-message"></span>
-    </div>
+        <h1 class="cinzel text-4xl md:text-6xl lg:text-7xl font-bold mb-5 leading-tight reveal" data-delay="80">
+          <span class="gold-text">Unlock Your</span><br>
+          <span style="color:var(--text-dark)">Life's Potential</span>
+        </h1>
 
-    <!-- Footer -->
-    <footer class="bg-[#dcedc8] text-center text-sm py-8 text-[#1e293b]">
-        <div class="container mx-auto px-6">    
-            <p>&copy; <span id="current-year"></span> VRIHA NUMERROLOGY. All Rights Reserved.</p>
-            <p class="mt-2">Designed and Developed by Proomptify.</p>
-            <div class="mt-4 flex justify-center space-x-4">
+        <h2 class="text-base md:text-2xl font-light mb-5 reveal" style="color:var(--text-mid)" data-delay="160">
+          Guided By The Wisdom of Numbers And Planets.
+        </h2>
+
+        <p class="text-sm md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed reveal" style="color:var(--text-light)" data-delay="240">
+          Numerology And Signature Consultation for Financial Growth, Business, Company Name, Career, Health, Personal Matters based on analysis of Date of Birth, Prediction &amp; Suggestion.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center reveal" data-delay="320">
+          <a href="#contact" class="btn-primary text-base px-8 py-4">&#10022; Book a Reading</a>
+          <button id="hero-booking-btn" class="btn-secondary text-base px-8 py-4">Quick Booking</button>
+        </div>
+
+        <!-- Stats -->
+        <div class="mt-16 flex flex-wrap gap-10 justify-center reveal" data-delay="400">
+          <div class="text-center">
+            <div class="stat-number" data-count="7000" data-suffix="+">0+</div>
+            <div class="text-xs uppercase tracking-widest mt-1" style="color:var(--text-light)">Consultations</div>
+          </div>
+          <div class="w-px hidden sm:block self-stretch" style="background:rgba(184,134,11,.2)"></div>
+          <div class="text-center">
+            <div class="stat-number" data-count="500" data-suffix="+">0+</div>
+            <div class="text-xs uppercase tracking-widest mt-1" style="color:var(--text-light)">Happy Clients</div>
+          </div>
+          <div class="w-px hidden sm:block self-stretch" style="background:rgba(184,134,11,.2)"></div>
+          <div class="text-center">
+            <div class="stat-number">5.0 &#9733;</div>
+            <div class="text-xs uppercase tracking-widest mt-1" style="color:var(--text-light)">Star Rating</div>
+          </div>
+        </div>
+
+        <!-- Scroll cue -->
+        <div class="mt-14 flex flex-col items-center gap-2 reveal" data-delay="480">
+          <span class="text-xs uppercase tracking-widest" style="color:var(--text-light);opacity:.6">Scroll to explore</span>
+          <div style="width:1px;height:38px;background:linear-gradient(to bottom,rgba(184,134,11,.5),transparent);animation:scrollCue 2.2s ease-in-out infinite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about" class="section" style="background:linear-gradient(180deg,var(--cream) 0%,var(--cream-dark) 100%)">
+      <div class="container mx-auto px-6 max-w-6xl w-full">
+        <div class="text-center mb-10 reveal">
+          <p class="section-label">The Expert</p>
+          <h2 class="cinzel text-3xl md:text-5xl font-bold mb-3" style="color:var(--text-dark)">Meet Bbipin K Patel</h2>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="glass-card p-8 md:p-12 reveal" data-delay="80">
+          <div class="flex flex-col md:flex-row items-center md:gap-14">
+            <div class="flex-shrink-0 mb-10 md:mb-0 relative">
+              <div style="position:absolute;inset:-10px;border-radius:50%;border:1.5px solid rgba(184,134,11,.22);animation:ringPulse 4s ease-in-out infinite;pointer-events:none"></div>
+              <div style="position:absolute;inset:-20px;border-radius:50%;border:1px solid rgba(184,134,11,.1);pointer-events:none"></div>
+              <img src="bbipin-patel.jpg"
+                   alt="Bbipin K Patel - Expert Numerologist in Ahmedabad, Gujarat"
+                   class="profile-img rounded-full w-44 h-44 md:w-56 md:h-56 object-cover border-4 shadow-xl"
+                   style="border-color:rgba(184,134,11,.4)"
+                   loading="lazy" decoding="async" width="224" height="224">
             </div>
+            <div class="text-sm md:text-base leading-relaxed text-center md:text-left">
+              <p class="mb-4" style="color:var(--text-mid)">Greetings! I am Bbipin K Patel, a seasoned numerologist with a deep passion for helping individuals navigate their life's journey through the ancient science of numbers. For years, I have provided personalized consultations, blending traditional numerological principles with intuitive guidance to help clients achieve their goals.</p>
+              <p class="mb-4" style="color:var(--text-mid)">At VRIHA NUMERROLOGY, my mission is to empower you to make informed decisions and unlock your full potential. Whether it's optimizing your business name for success, choosing a rewarding career path, or understanding your personal relationships, numbers hold the key to a more harmonious life.</p>
+              <p class="mb-7" style="color:var(--text-mid)">I believe that every number tells a story, and I am here to help you read yours. My approach is rooted in compassion, integrity, and a commitment to your well-being. Let's embark on this journey together.</p>
+              <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide" style="background:rgba(184,134,11,.1);border:1px solid rgba(184,134,11,.2);color:var(--gold)">&#128302; 7000+ Consultations</span>
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide" style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:#16a34a">&#9889; Fast Response</span>
+                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide" style="background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);color:#1d4ed8">&#128274; Confidential</span>
+              </div>
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Get current year for footer
-            const yearSpan = document.getElementById('current-year');
-            yearSpan.textContent = new Date().getFullYear();
+    <!-- ===== SERVICES ===== -->
+    <section id="services" class="section" style="background:var(--cream)">
+      <div class="container mx-auto px-6 max-w-6xl w-full">
+        <div class="text-center mb-10 reveal">
+          <p class="section-label">What We Offer</p>
+          <h2 class="cinzel text-3xl md:text-5xl font-bold mb-3" style="color:var(--text-dark)">Our Services</h2>
+          <div class="section-divider"></div>
+          <p class="max-w-lg mx-auto text-sm mt-3" style="color:var(--text-light)">Personalized consultations to guide you towards prosperity, clarity, and harmony in all areas of life.</p>
+        </div>
 
-            // Mobile device detection
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            // Scroll animations
-            const observerOptions = {
-                threshold: 0.2,
-                rootMargin: '0px 0px -100px 0px'
-            };
+          <!-- Vastu — clicking anywhere opens WhatsApp for Vastu -->
+          <a href="https://wa.me/917041527196?text=Hello%2C%20I%20am%20interested%20in%20Vastu%20Consultation.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="service-card reveal block no-underline" data-delay="0" style="text-decoration:none">
+            <div class="text-4xl mb-4">&#127968;</div>
+            <h3 class="cinzel text-xl font-semibold mb-3" style="color:var(--gold)">Vastu Consultation</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color:var(--text-mid)">We offer expert Vastu consultation for your Home, Office, and Factory to create a positive and prosperous environment.</p>
+            <div class="pricing-toggle" onclick="event.preventDefault();event.stopPropagation()">
+              <button class="toggle-btn" data-service="vastu">View Pricing</button>
+              <div class="pricing-info" data-pricing="vastu">
+                <div class="text-sm font-bold" style="color:var(--gold)">Starting from &#8377;5,100 / $55</div>
+                <div class="text-xs mt-1" style="color:var(--text-light)">Home: &#8377;5,100 / $55 &nbsp;|&nbsp; Office: &#8377;5,100 / $55 &nbsp;|&nbsp; Factory: &#8377;15,000 / $169</div>
+              </div>
+            </div>
+            <div class="mt-4 text-xs font-semibold" style="color:var(--gold-bright)">&#128172; Tap to enquire on WhatsApp &#8594;</div>
+          </a>
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-in');
-                    }
-                });
-            }, observerOptions);
+          <!-- Name Suggestion -->
+          <a href="https://wa.me/917041527196?text=Hello%2C%20I%20am%20interested%20in%20Name%20Suggestion.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="service-card reveal block" data-delay="80" style="text-decoration:none">
+            <div class="text-4xl mb-4">&#10024;</div>
+            <h3 class="cinzel text-xl font-semibold mb-3" style="color:var(--gold)">Name Suggestion</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color:var(--text-mid)">Receive personalized name suggestions that align with your birth date to bring you luck and success in all areas of life.</p>
+            <div class="pricing-toggle" onclick="event.preventDefault();event.stopPropagation()">
+              <button class="toggle-btn" data-service="name">View Pricing</button>
+              <div class="pricing-info" data-pricing="name">
+                <div class="text-sm font-bold" style="color:var(--gold)">Starting from &#8377;3,300 | $46</div>
+                <div class="text-xs mt-1" style="color:var(--text-light)">Business / Baby: &#8377;3,300 | $46</div>
+              </div>
+            </div>
+            <div class="mt-4 text-xs font-semibold" style="color:var(--gold-bright)">&#128172; Tap to enquire on WhatsApp &#8594;</div>
+          </a>
 
-            document.querySelectorAll('.scroll-animate').forEach(el => {
-                observer.observe(el);
-            });
+          <!-- Signature -->
+          <a href="https://wa.me/917041527196?text=Hello%2C%20I%20am%20interested%20in%20Signature%20Customization.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="service-card reveal block" data-delay="160" style="text-decoration:none">
+            <div class="text-4xl mb-4">&#9997;&#65039;</div>
+            <h3 class="cinzel text-xl font-semibold mb-3" style="color:var(--gold)">Signature Customization</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color:var(--text-mid)">Get a customized signature design based on your birth date to enhance your personality and attract positive energy.</p>
+            <div class="pricing-toggle" onclick="event.preventDefault();event.stopPropagation()">
+              <button class="toggle-btn" data-service="signature">View Pricing</button>
+              <div class="pricing-info" data-pricing="signature">
+                <div class="text-sm font-bold" style="color:var(--gold)">Starting from &#8377;4,600 / $51</div>
+                <div class="text-xs mt-1" style="color:var(--text-light)">Premium: &#8377;4,600 / $51</div>
+              </div>
+            </div>
+            <div class="mt-4 text-xs font-semibold" style="color:var(--gold-bright)">&#128172; Tap to enquire on WhatsApp &#8594;</div>
+          </a>
 
-            // Mobile menu functionality
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+          <!-- Numerology -->
+          <a href="https://wa.me/917041527196?text=Hello%2C%20I%20am%20interested%20in%20Numerology%20Consultation.%20Please%20guide%20me." target="_blank" rel="noopener noreferrer" class="service-card reveal block" data-delay="240" style="text-decoration:none">
+            <div class="text-4xl mb-4">&#128302;</div>
+            <h3 class="cinzel text-xl font-semibold mb-3" style="color:var(--gold)">Numerology Consultation</h3>
+            <p class="text-sm leading-relaxed mb-4" style="color:var(--text-mid)">Comprehensive numerology consultation for financial growth, business, career, health, and personal matters based on your date of birth and its prediction.</p>
+            <div class="pricing-toggle" onclick="event.preventDefault();event.stopPropagation()">
+              <button class="toggle-btn" data-service="numerology">View Pricing</button>
+              <div class="pricing-info" data-pricing="numerology">
+                <div class="text-sm font-bold" style="color:var(--gold)">Starting from &#8377;4,600 / $51</div>
+                <div class="text-xs mt-1" style="color:var(--text-light)">Detailed: &#8377;4,600 / $51</div>
+              </div>
+            </div>
+            <div class="mt-4 text-xs font-semibold" style="color:var(--gold-bright)">&#128172; Tap to enquire on WhatsApp &#8594;</div>
+          </a>
 
-            // Hide mobile menu when a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
+        </div>
+      </div>
+    </section>
 
-            // Enhanced Testimonial slider functionality
-            const slider = document.getElementById('testimonial-slider');
-            const prevButton = document.getElementById('prev-testimonial');
-            const nextButton = document.getElementById('next-testimonial');
-            const dotsContainer = document.getElementById('testimonial-dots');
-            let currentIndex = 0;
-            const testimonials = document.querySelectorAll('.testimonial-item');
-            const testimonialContainer = document.querySelector('.testimonial-container');
-            let autoPlayInterval;
+    <!-- ===== TESTIMONIALS ===== -->
+    <section id="testimonials" class="section" style="background:linear-gradient(180deg,var(--cream) 0%,var(--cream-dark) 100%)">
+      <div class="container mx-auto px-6 max-w-5xl w-full">
+        <div class="text-center mb-10 reveal">
+          <p class="section-label">Client Stories</p>
+          <h2 class="cinzel text-3xl md:text-5xl font-bold mb-3" style="color:var(--text-dark)">What Clients Say</h2>
+          <div class="section-divider"></div>
+        </div>
 
-            // Create dots
-            testimonials.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.className = `dot ${index === 0 ? 'active' : ''}`;
-                dot.addEventListener('click', () => {
-                    currentIndex = index;
-                    updateSlider();
-                    updateDots();
-                    resetAutoPlay();
-                });
-                dotsContainer.appendChild(dot);
-            });
+        <div class="glass-card p-4 md:p-8 reveal" data-delay="80">
+          <div class="relative w-full overflow-hidden">
+            <div id="t-slider" class="flex t-container">
 
-            function updateSlider() {
-                if (testimonials.length > 0) {
-                    const scrollPosition = currentIndex * testimonials[0].offsetWidth;
-                    testimonialContainer.scrollTo({
-                        left: scrollPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
+              <div class="t-item px-2 md:px-10 py-6">
+                <div class="text-center text-xl mb-4 tracking-wide" style="color:var(--gold-bright)">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+                <p class="italic text-sm md:text-base leading-relaxed mb-6 text-center" style="color:var(--text-mid)">"I'm truly grateful to Vriha Numerology for being a constant guiding light throughout my visa process. Their predictions were incredibly accurate, and I believe their influence played a significant role in the successful outcome of my visa application. Their guidance was a symbol of trust and gave me the confidence and positivity I needed."</p>
+                <p class="text-center text-sm font-semibold" style="color:var(--gold)">&#8212; Dhruv Bhatt</p>
+              </div>
 
-            function updateDots() {
-                const dots = dotsContainer.querySelectorAll('.dot');
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
-                });
-            }
+              <div class="t-item px-2 md:px-10 py-6">
+                <div class="text-center text-xl mb-4 tracking-wide" style="color:var(--gold-bright)">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+                <p class="italic text-sm md:text-base leading-relaxed mb-6 text-center" style="color:var(--text-mid)">"I had a very positive experience with Vriha Numerology. Bbipin Patel is highly knowledgeable, calm, and genuinely dedicated to helping people. His insights were accurate and deeply meaningful, and he explained everything with patience and clarity. I left with a stronger sense of direction and renewed positivity. Highly recommended!"</p>
+                <p class="text-center text-sm font-semibold" style="color:var(--gold)">&#8212; Apurva Patel</p>
+              </div>
 
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % testimonials.length;
-                updateSlider();
-                updateDots();
-            }
+              <div class="t-item px-2 md:px-10 py-6">
+                <div class="text-center text-xl mb-4 tracking-wide" style="color:var(--gold-bright)">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+                <p class="italic text-sm md:text-base leading-relaxed mb-6 text-center" style="color:var(--text-mid)">"Vriha Numerology is the best! After getting my name and signature corrected, I was shocked by the sudden progress my career made. With the remedies provided by Bipin K. Patel, my USA process showed sudden and positive changes. He gave me valuable suggestions and guidance whenever needed, which helped me feel much more balanced."</p>
+                <p class="text-center text-sm font-semibold" style="color:var(--gold)">&#8212; Neell Patel</p>
+              </div>
 
-            function prevSlide() {
-                currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-                updateSlider();
-                updateDots();
-            }
+              <div class="t-item px-2 md:px-10 py-6">
+                <div class="text-center text-xl mb-4 tracking-wide" style="color:var(--gold-bright)">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+                <p class="italic text-sm md:text-base leading-relaxed mb-6 text-center" style="color:var(--text-mid)">"I had an amazing experience with Bipinbhai. His insights into numerology and Vastu Shastra brought a positive shift in my life, especially in terms of health, and he offers practical, easy-to-practice solutions. His readings are incredibly accurate and he takes the time to listen and explain everything clearly. It was a truly valuable experience."</p>
+                <p class="text-center text-sm font-semibold" style="color:var(--gold)">&#8212; Jolly Patel</p>
+              </div>
 
-            function startAutoPlay() {
-                autoPlayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-            }
+              <div class="t-item px-2 md:px-10 py-6">
+                <div class="text-center text-xl mb-4 tracking-wide" style="color:var(--gold-bright)">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+                <p class="italic text-sm md:text-base leading-relaxed mb-6 text-center" style="color:var(--text-mid)">"My professional life was in a rut. Bipin K. Patel's guidance on my business name and signature was a game-changer. Within weeks, I saw a noticeable increase in client inquiries and revenue. His insights are not just about numbers; they are about tangible results. I am extremely satisfied."</p>
+                <p class="text-center text-sm font-semibold" style="color:var(--gold)">&#8212; Mitesh Shah</p>
+              </div>
 
-            function resetAutoPlay() {
-                clearInterval(autoPlayInterval);
-                startAutoPlay();
-            }
+              <div class="t-item px-2 md:px-10 py-6">
+                <div class="text-center text-xl mb-4 tracking-wide" style="color:var(--gold-bright)">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+                <p class="italic text-sm md:text-base leading-relaxed mb-6 text-center" style="color:var(--text-mid)">"I was skeptical at first, but after a consultation with Bipinbhai, I'm a believer. He provided me with a clear and concise numerology report that explained my life's challenges and opportunities. His practical advice helped me improve my relationships and gain clarity about my future. Highly recommend his services to anyone seeking direction."</p>
+                <p class="text-center text-sm font-semibold" style="color:var(--gold)">&#8212; Sneha Desai</p>
+              </div>
 
-            if (nextButton && prevButton) {
-                nextButton.addEventListener('click', () => {
-                    nextSlide();
-                    resetAutoPlay();
-                });
-                prevButton.addEventListener('click', () => {
-                    prevSlide();
-                    resetAutoPlay();
-                });
-            }
+              <div class="t-item px-2 md:px-10 py-6">
+                <div class="text-center text-xl mb-4 tracking-wide" style="color:var(--gold-bright)">&#11088;&#11088;&#11088;&#11088;&#11088;</div>
+                <p class="italic text-sm md:text-base leading-relaxed mb-6 text-center" style="color:var(--text-mid)">"VRIHA NUMERROLOGY has been instrumental in my personal growth. Bbipin K. Patel's readings are not only accurate but also delivered with great empathy. The health-related suggestions he gave me were simple yet effective, and I have felt a positive change in my overall well-being. A truly genuine and kind professional."</p>
+                <p class="text-center text-sm font-semibold" style="color:var(--gold)">&#8212; Rajesh Sharma</p>
+              </div>
 
-            // Start auto-play
-            startAutoPlay();
+            </div>
 
-            // Pause auto-play on hover
-            slider.addEventListener('mouseenter', () => {
-                clearInterval(autoPlayInterval);
-            });
-            slider.addEventListener('mouseleave', startAutoPlay);
+            <button id="prev-t" class="absolute top-1/2 left-0 -translate-y-1/2 p-2 rounded-full ml-1 transition hidden md:flex items-center justify-center z-10" style="background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2);color:var(--text-mid)" aria-label="Previous">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </button>
+            <button id="next-t" class="absolute top-1/2 right-0 -translate-y-1/2 p-2 rounded-full mr-1 transition hidden md:flex items-center justify-center z-10" style="background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2);color:var(--text-mid)" aria-label="Next">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10l-3.293-3.293a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+            </button>
 
-            // Touch/swipe support for mobile
-            let startX = 0;
-            let isDragging = false;
+            <div class="flex justify-center gap-2 mt-6" id="t-dots"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            testimonialContainer.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                isDragging = true;
-                clearInterval(autoPlayInterval);
-            });
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="section" style="background:var(--cream-dark)">
+      <div class="container mx-auto px-6 max-w-3xl w-full">
+        <div class="text-center mb-10 reveal">
+          <p class="section-label">Reach Us</p>
+          <h2 class="cinzel text-3xl md:text-5xl font-bold mb-3" style="color:var(--text-dark)">Contact &amp; Booking</h2>
+          <div class="section-divider"></div>
+        </div>
 
-            testimonialContainer.addEventListener('touchmove', (e) => {
-                if (!isDragging) return;
-                e.preventDefault();
-            });
+        <div class="glass-card p-8 reveal" data-delay="80">
+          <h3 class="cinzel text-xl font-semibold text-center mb-1" style="color:var(--gold)">Get in Touch</h3>
+          <p class="text-sm text-center mb-8" style="color:var(--text-light)">Ready to start your journey? Tap any option below to connect instantly.</p>
 
-            testimonialContainer.addEventListener('touchend', (e) => {
-                if (!isDragging) return;
-                isDragging = false;
-                
-                const endX = e.changedTouches[0].clientX;
-                const diff = startX - endX;
-                
-                if (Math.abs(diff) > 50) { // Minimum swipe distance
-                    if (diff > 0) {
-                        nextSlide();
-                    } else {
-                        prevSlide();
-                    }
-                }
-                resetAutoPlay();
-            });
+          <div class="space-y-3 mb-8">
 
-            window.addEventListener('resize', updateSlider);
+            <!-- Phone — clickable, opens WhatsApp -->
+            <a href="https://wa.me/917041527196?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener noreferrer" class="c-item" aria-label="Call or WhatsApp us">
+              <span class="text-xs font-semibold uppercase tracking-wider w-20 flex-shrink-0" style="color:var(--gold)">Phone</span>
+              <span class="s-icon wa-ic flex-shrink-0">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.002 2.933c-7.255 0-13.143 5.888-13.143 13.143 0 2.315.6 4.577 1.746 6.583l-1.858 6.794 6.963-1.83c1.918 1.047 4.084 1.598 6.292 1.598h.001c7.255 0 13.143-5.888 13.143-13.143 0-3.514-1.368-6.82-3.855-9.307s-5.793-3.838-9.289-3.838zm0 23.919c-1.912 0-3.776-.51-5.395-1.474l-.385-.229-4.134 1.087 1.106-4.043-.25-.414c-1.04-1.72-1.59-3.698-1.59-5.743 0-6.102 4.963-11.065 11.065-11.065 2.955 0 5.732 1.151 7.818 3.238s3.235 4.872 3.235 7.809c0 6.101-4.963 11.064-11.065 11.064zm6.13-8.288c-.335-.167-1.983-.979-2.29-1.09-.307-.112-.53-.167-.754.167s-.864 1.09-1.059 1.314c-.195.223-.391.25-.726.083-.335-.167-1.414-.52-2.692-1.66-.994-.886-1.663-1.979-1.858-2.314-.195-.334-.021-.514.146-.68.15-.149.335-.391.503-.586.168-.195.224-.334.336-.557.112-.223.056-.417-.028-.584-.083-.167-.754-1.812-1.034-2.482-.272-.652-.55-.563-.754-.572-.195-.008-.419-.01-.644-.01-.223 0-.586.083-.892.417-.307.334-1.171 1.143-1.171 2.785s1.199 3.232 1.367 3.456c.168.223 2.356 3.6 5.71 5.041.799.345 1.422.551 1.908.705.801.255 1.53.219 2.106.132.642-.096 1.983-.811 2.263-1.593.279-.782.279-1.453.195-1.593-.084-.14-.307-.223-.642-.39z"/></svg>
+              </span>
+              <div>
+                <div class="text-sm font-medium" style="color:var(--text-dark)">+91 70415 27196</div>
+                <div class="text-xs" style="color:var(--text-light)">Tap to open WhatsApp</div>
+              </div>
+              <span class="ml-auto text-xs font-bold" style="color:#25D366">&#8594;</span>
+            </a>
 
-            // Pricing toggle functionality
-            document.querySelectorAll('.toggle-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const service = this.getAttribute('data-service');
-                    const pricingInfo = document.querySelector(`[data-pricing="${service}"]`);
-                    
-                    if (pricingInfo.classList.contains('show')) {
-                        pricingInfo.classList.remove('show');
-                        this.textContent = 'View Pricing';
-                        this.classList.remove('active');
-                    } else {
-                        // Hide all other pricing info
-                        document.querySelectorAll('.pricing-info').forEach(info => {
-                            info.classList.remove('show');
-                        });
-                        document.querySelectorAll('.toggle-btn').forEach(button => {
-                            button.textContent = 'View Pricing';
-                            button.classList.remove('active');
-                        });
-                        
-                        // Show this pricing info
-                        pricingInfo.classList.add('show');
-                        this.textContent = 'Hide Pricing';
-                        this.classList.add('active');
-                    }
-                });
-            });
+            <!-- Email — clickable, opens email client -->
+            <a href="mailto:bbipinkpatel24@yahoo.com?subject=Numerology%20Consultation%20Enquiry&body=Hello%20Bbipin%20K%20Patel%2C%0A%0AI%20would%20like%20to%20enquire%20about%20your%20numerology%20services." class="c-item" aria-label="Send email">
+              <span class="text-xs font-semibold uppercase tracking-wider w-20 flex-shrink-0" style="color:var(--gold)">Email</span>
+              <span class="mail-ic flex-shrink-0">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+              </span>
+              <div>
+                <div class="text-sm font-medium" style="color:var(--text-dark)">bbipinkpatel24@yahoo.com</div>
+                <div class="text-xs" style="color:var(--text-light)">Tap to send email</div>
+              </div>
+              <span class="ml-auto text-xs font-bold" style="color:#0072c6">&#8594;</span>
+            </a>
 
-            // Back to top functionality
-            const backToTopBtn = document.getElementById('back-to-top');
-            
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTopBtn.classList.add('show');
-                } else {
-                    backToTopBtn.classList.remove('show');
-                }
-            });
+            <!-- Instagram — clickable, opens Instagram -->
+            <a href="https://www.instagram.com/vriha_numerrology_24_" target="_blank" rel="noopener noreferrer" class="c-item" aria-label="Follow on Instagram">
+              <span class="text-xs font-semibold uppercase tracking-wider w-20 flex-shrink-0" style="color:var(--gold)">Instagram</span>
+              <span class="ig-ic flex-shrink-0">
+                <svg viewBox="0 0 448 512" aria-hidden="true"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9S160.5 370.9 224.1 370.9 339 319.6 339 255.9 287.7 141 224.1 141zm0 190.6c-41.8 0-75.7-33.9-75.7-75.7s33.9-75.7 75.7-75.7 75.7 33.9 75.7 75.7-33.9 75.7-75.7 75.7zm146.4-194.3c0 14.9-12.1 27-27 27-14.9 0-27-12.1-27-27s12.1-27 27-27 27 12.1 27 27zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.9 1.7-67.7 9.9-93.9 36.2-26.2 26.2-34.4 58-36.2 93.9-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9 26.2 26.2 58 34.4 93.9 36.2 37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+              </span>
+              <div>
+                <div class="text-sm font-medium" style="color:var(--text-dark)">@vriha_numerrology_24_</div>
+                <div class="text-xs" style="color:var(--text-light)">Tap to open Instagram</div>
+              </div>
+              <span class="ml-auto text-xs font-bold" style="color:#d6249f">&#8594;</span>
+            </a>
 
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
+            <!-- Address — clickable, opens Google Maps -->
+            <a href="https://maps.app.goo.gl/UhDEdM3y9oEiJX6z8" target="_blank" rel="noopener noreferrer" class="c-item" aria-label="Open location in Google Maps">
+              <span class="text-xs font-semibold uppercase tracking-wider w-20 flex-shrink-0" style="color:var(--gold)">Address</span>
+              <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" style="color:#ea4335" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <div>
+                <div class="text-xs leading-relaxed" style="color:var(--text-mid)">Gf - 10, Arjun Complex, opp. Radheshyam party plot, near Saurabh School Road, Vijay Nagar, Nava Vadaj, Ahmedabad, Gujarat 382480</div>
+                <div class="text-xs mt-1 font-semibold" style="color:#ea4335">Tap to open in Google Maps ↗</div>
+              </div>
+              <span class="ml-auto text-xs font-bold" style="color:#ea4335">&#8594;</span>
+            </a>
 
-            // Booking modal functionality
-            const bookingModal = document.getElementById('booking-modal');
-            const closeModal = document.getElementById('close-modal');
-            const bookingButtons = [
-                document.getElementById('booking-btn'),
-                document.getElementById('mobile-booking-btn'),
-                document.getElementById('hero-booking-btn'),
-                document.getElementById('main-booking-btn')
-            ];
+            <!-- Trust -->
+            <div class="c-item flex-wrap gap-4" style="cursor:default">
+              <span class="text-xs font-semibold" style="color:#16a34a">&#9889; Fast Response</span>
+              <span class="text-xs font-semibold" style="color:#1d4ed8">&#128274; Confidential</span>
+              <span class="text-xs font-semibold" style="color:var(--gold)">&#127919; Accurate Predictions</span>
+            </div>
+          </div>
 
-            function openBookingModal() {
-                bookingModal.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            }
+          <div class="text-center">
+            <button id="main-booking-btn" class="btn-primary text-base px-10 py-4">&#128197; Book Consultation Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            function closeBookingModal() {
-                bookingModal.classList.remove('show');
-                document.body.style.overflow = 'auto';
-            }
+  </main>
 
-            bookingButtons.forEach(btn => {
-                if (btn) {
-                    btn.addEventListener('click', openBookingModal);
-                }
-            });
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/917041527196?text=Hello%2C%20I%20would%20like%20to%20book%20a%20numerology%20consultation." target="_blank" rel="noopener noreferrer" class="floating-wa" title="Chat on WhatsApp" aria-label="Chat on WhatsApp">
+    <svg width="30" height="30" viewBox="0 0 32 32" fill="white" aria-hidden="true">
+      <path d="M16.002 2.933c-7.255 0-13.143 5.888-13.143 13.143 0 2.315.6 4.577 1.746 6.583l-1.858 6.794 6.963-1.83c1.918 1.047 4.084 1.598 6.292 1.598h.001c7.255 0 13.143-5.888 13.143-13.143 0-3.514-1.368-6.82-3.855-9.307s-5.793-3.838-9.289-3.838zm0 23.919c-1.912 0-3.776-.51-5.395-1.474l-.385-.229-4.134 1.087 1.106-4.043-.25-.414c-1.04-1.72-1.59-3.698-1.59-5.743 0-6.102 4.963-11.065 11.065-11.065 2.955 0 5.732 1.151 7.818 3.238s3.235 4.872 3.235 7.809c0 6.101-4.963 11.064-11.065 11.064zm6.13-8.288c-.335-.167-1.983-.979-2.29-1.09-.307-.112-.53-.167-.754.167s-.864 1.09-1.059 1.314c-.195.223-.391.25-.726.083-.335-.167-1.414-.52-2.692-1.66-.994-.886-1.663-1.979-1.858-2.314-.195-.334-.021-.514.146-.68.15-.149.335-.391.503-.586.168-.195.224-.334.336-.557.112-.223.056-.417-.028-.584-.083-.167-.754-1.812-1.034-2.482-.272-.652-.55-.563-.754-.572-.195-.008-.419-.01-.644-.01-.223 0-.586.083-.892.417-.307.334-1.171 1.143-1.171 2.785s1.199 3.232 1.367 3.456c.168.223 2.356 3.6 5.71 5.041.799.345 1.422.551 1.908.705.801.255 1.53.219 2.106.132.642-.096 1.983-.811 2.263-1.593.279-.782.279-1.453.195-1.593-.084-.14-.307-.223-.642-.39z"/>
+    </svg>
+  </a>
 
-            closeModal.addEventListener('click', closeBookingModal);
-            
-            bookingModal.addEventListener('click', (e) => {
-                if (e.target === bookingModal) {
-                    closeBookingModal();
-                }
-            });
+  <!-- Back to Top -->
+  <button id="back-to-top" class="back-top" title="Back to Top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6 1.41 1.41z"/></svg>
+  </button>
 
-            // Enhanced Mobile-Friendly Form submission
-            const bookingForm = document.getElementById('booking-form');
-            const submitBtn = document.getElementById('submit-btn');
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toast-message');
+  <!-- Booking Modal -->
+  <div id="booking-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <button class="close-modal" id="close-modal" aria-label="Close">&times;</button>
+      <h2 id="modal-title" class="cinzel text-2xl font-bold mb-1 text-center" style="color:var(--gold)">Book Your Consultation</h2>
+      <p class="text-xs text-center mb-6 tracking-wide" style="color:var(--text-light)">Fill in your details — we'll connect via WhatsApp</p>
+      <form id="booking-form" novalidate>
+        <div class="form-group"><label for="name">Full Name *</label><input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name"></div>
+        <div class="form-group"><label for="email">Email Address *</label><input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email"></div>
+        <div class="form-group"><label for="phone">Phone Number *</label><input type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required autocomplete="tel"></div>
+        <div class="form-group"><label for="birthdate">Date of Birth *</label><input type="date" id="birthdate" name="birthdate" required></div>
+        <div class="form-group">
+          <label for="service">Service Needed *</label>
+          <select id="service" name="service" required>
+            <option value="">Select a service</option>
+            <option value="numerology">Numerology Consultation</option>
+            <option value="vastu">Vastu Consultation</option>
+            <option value="name">Name Suggestion</option>
+            <option value="signature">Signature Customization</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="consultation-type">Consultation Type *</label>
+          <select id="consultation-type" name="consultation-type" required>
+            <option value="">Select consultation type</option>
+            <option value="phone">Phone Consultation</option>
+            <option value="video">Video Call</option>
+            <option value="in-person">In-Person Meeting</option>
+            <option value="whatsapp">WhatsApp Chat</option>
+          </select>
+        </div>
+        <div class="form-group"><label for="message">Your Concerns (optional)</label><textarea id="message" name="message" placeholder="Please describe what you'd like to discuss..."></textarea></div>
+        <button type="submit" class="btn-primary w-full text-base py-3" id="submit-btn">
+          <span class="button-text">Book Consultation</span>
+          <div class="spinner" style="display:none"></div>
+        </button>
+      </form>
+    </div>
+  </div>
 
-            function showToast(message, type = 'success') {
-                toastMessage.textContent = message;
-                toast.className = `toast show ${type}`;
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 4000);
-            }
+  <!-- Toast -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"><span id="toast-message"></span></div>
 
-            // Mobile-optimized WhatsApp function
-            function openWhatsApp(message) {
-                const phoneNumber = '917041527196';
-                
-                // Clean and encode the message for URL
-                const cleanMessage = encodeURIComponent(message.trim());
-                
-                let whatsappURL;
-                
-                if (isMobile) {
-                    // Use mobile app URL scheme for mobile devices
-                    whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${cleanMessage}`;
-                } else {
-                    // Use web WhatsApp for desktop
-                    whatsappURL = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${cleanMessage}`;
-                }
-                
-                // Try to open WhatsApp
-                try {
-                    if (isMobile) {
-                        // For mobile: try app first, fallback to web
-                        const appURL = `whatsapp://send?phone=${phoneNumber}&text=${cleanMessage}`;
-                        window.location.href = appURL;
-                        
-                        // Fallback to web version after a short delay
-                        setTimeout(() => {
-                            window.open(whatsappURL, '_blank');
-                        }, 1000);
-                    } else {
-                        // For desktop: open in new tab
-                        window.open(whatsappURL, '_blank');
-                    }
-                } catch (error) {
-                    console.error('WhatsApp error:', error);
-                    // Fallback: copy message to clipboard
-                    if (navigator.clipboard) {
-                        navigator.clipboard.writeText(message);
-                        showToast('❌ Could not open WhatsApp. Message copied to clipboard!', 'error');
-                    } else {
-                        showToast('❌ Could not open WhatsApp. Please contact us directly.', 'error');
-                    }
-                }
-            }
+  <!-- Footer -->
+  <footer class="relative z-10 py-10 text-center" style="background:var(--cream-deeper);border-top:1px solid rgba(184,134,11,.15)">
+    <div class="container mx-auto px-6">
+      <p class="cinzel text-lg font-bold mb-2"><span class="gold-text">VRIHA</span> <span style="color:var(--text-mid)">NUMERROLOGY</span></p>
+      <p class="text-xs mb-1" style="color:var(--text-light)">&copy; <span id="current-year"></span> VRIHA NUMERROLOGY. All Rights Reserved.</p>
+      <p class="text-xs" style="color:rgba(90,62,43,.5)">Designed and Developed by Proomptify.</p>
+    </div>
+  </footer>
 
-            bookingForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                // Validate form
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const phone = document.getElementById('phone').value.trim();
-                const birthdate = document.getElementById('birthdate').value;
-                const service = document.getElementById('service').value;
-                const consultationType = document.getElementById('consultation-type').value;
-                const message = document.getElementById('message').value.trim();
-                
-                if (!name || !email || !phone || !birthdate || !service || !consultationType) {
-                    showToast('❌ Please fill in all required fields.', 'error');
-                    return;
-                }
-                
-                // Show loading state
-                const buttonText = submitBtn.querySelector('.button-text');
-                const loadingSpinner = submitBtn.querySelector('.loading-spinner');
-                
-                buttonText.style.display = 'none';
-                loadingSpinner.style.display = 'inline-block';
-                submitBtn.disabled = true;
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
 
-                // Simulate form processing
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                
-                // Create WhatsApp message
-                const whatsappMessage = `Hello! I would like to book a consultation.
+    // SCROLL REVEALS
+    const revObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), parseInt(e.target.dataset.delay || 0));
+          revObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
 
-Name: ${name}
-Email: ${email}  
-Phone: ${phone}
-Date of Birth: ${birthdate}
-Service: ${service}
-Consultation Type: ${consultationType}
-Message: ${message || 'No specific message provided'}
+    // COUNTER ANIMATION
+    function animCount(el) {
+      const target = parseInt(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const steps = 55, dur = 2200;
+      let cur = 0;
+      const inc = target / steps;
+      const t = setInterval(() => {
+        cur = Math.min(cur + inc, target);
+        el.textContent = Math.floor(cur).toLocaleString('en-IN') + suffix;
+        if (cur >= target) clearInterval(t);
+      }, dur / steps);
+    }
+    const cntObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { animCount(e.target); cntObs.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
 
-Please confirm my appointment. Thank you!`;
-                
-                try {
-                    // Open WhatsApp with better mobile support
-                    openWhatsApp(whatsappMessage);
-                    
-                    // Reset form and close modal
-                    bookingForm.reset();
-                    closeBookingModal();
-                    showToast('✅ Booking request sent via WhatsApp! We will contact you soon.');
-                    
-                } catch (error) {
-                    console.error('Form submission error:', error);
-                    showToast('❌ There was an issue sending your request. Please try again or contact us directly.', 'error');
-                }
-                
-                // Reset button state
-                buttonText.style.display = 'inline';
-                loadingSpinner.style.display = 'none';
-                submitBtn.disabled = false;
-            });
+    // MOBILE MENU
+    const mBtn = document.getElementById('mobile-menu-button');
+    const mMenu = document.getElementById('mobile-menu');
+    mBtn.addEventListener('click', () => mMenu.classList.toggle('hidden'));
+    mMenu.querySelectorAll('a, button').forEach(el => el.addEventListener('click', () => mMenu.classList.add('hidden')));
 
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
+    // TESTIMONIAL SLIDER
+    const tSlider = document.getElementById('t-slider');
+    const prevT = document.getElementById('prev-t');
+    const nextT = document.getElementById('next-t');
+    const dotsEl = document.getElementById('t-dots');
+    const tItems = tSlider.querySelectorAll('.t-item');
+    const tCont = tSlider.closest('.t-container') || tSlider;
+    let tIdx = 0, tAuto;
 
-            // Add entrance animation delay to elements
-            const animatedElements = document.querySelectorAll('.service-card');
-            animatedElements.forEach((el, index) => {
-                el.style.animationDelay = `${index * 0.1}s`;
-            });
+    tItems.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = `dot ${i === 0 ? 'active' : ''}`;
+      d.addEventListener('click', () => { tIdx = i; updateT(); resetTAuto(); });
+      dotsEl.appendChild(d);
+    });
 
-            // Analytics tracking (ready for implementation)
-            function trackEvent(eventName, properties = {}) {
-                // Ready for Google Analytics, Facebook Pixel, etc.
-                console.log('Event tracked:', eventName, properties);
-            }
+    function updateT() {
+      if (tItems.length) {
+        tCont.scrollTo({ left: tIdx * tItems[0].offsetWidth, behavior: 'smooth' });
+        dotsEl.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === tIdx));
+      }
+    }
+    function nextT_fn() { tIdx = (tIdx + 1) % tItems.length; updateT(); }
+    function prevT_fn() { tIdx = (tIdx - 1 + tItems.length) % tItems.length; updateT(); }
+    function startTAuto() { tAuto = setInterval(nextT_fn, 5000); }
+    function resetTAuto() { clearInterval(tAuto); startTAuto(); }
+    if (prevT) prevT.addEventListener('click', () => { prevT_fn(); resetTAuto(); });
+    if (nextT) nextT.addEventListener('click', () => { nextT_fn(); resetTAuto(); });
+    startTAuto();
+    tSlider.addEventListener('mouseenter', () => clearInterval(tAuto));
+    tSlider.addEventListener('mouseleave', startTAuto);
+    let tStartX = 0;
+    tCont.addEventListener('touchstart', e => { tStartX = e.touches[0].clientX; clearInterval(tAuto); }, { passive: true });
+    tCont.addEventListener('touchend', e => {
+      const diff = tStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) diff > 0 ? nextT_fn() : prevT_fn();
+      resetTAuto();
+    }, { passive: true });
+    window.addEventListener('resize', updateT, { passive: true });
 
-            // Track key interactions
-            bookingButtons.forEach((btn, index) => {
-                if (btn) {
-                    btn.addEventListener('click', () => {
-                        trackEvent('booking_button_click', { button_location: index, is_mobile: isMobile });
-                    });
-                }
-            });
+    // PRICING TOGGLE
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const svc = this.dataset.service;
+        const info = document.querySelector(`[data-pricing="${svc}"]`);
+        const isOpen = info.classList.contains('show');
+        document.querySelectorAll('.pricing-info').forEach(i => i.classList.remove('show'));
+        document.querySelectorAll('.toggle-btn').forEach(b => { b.textContent = 'View Pricing'; b.classList.remove('active'); });
+        if (!isOpen) { info.classList.add('show'); this.textContent = 'Hide Pricing'; this.classList.add('active'); }
+      });
+    });
 
-            document.querySelector('.floating-whatsapp').addEventListener('click', () => {
-                trackEvent('whatsapp_click', { source: 'floating_button', is_mobile: isMobile });
-            });
+    // BACK TO TOP
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('show', window.pageYOffset > 300), { passive: true });
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // BOOKING MODAL
+    const modal = document.getElementById('booking-modal');
+    const openModal = () => { modal.classList.add('show'); document.body.style.overflow = 'hidden'; };
+    const closeModalFn = () => { modal.classList.remove('show'); document.body.style.overflow = ''; };
+    ['booking-btn','mobile-booking-btn','hero-booking-btn','main-booking-btn'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('click', openModal);
+    });
+    document.getElementById('close-modal').addEventListener('click', closeModalFn);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModalFn(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalFn(); });
+
+    // FORM SUBMIT
+    const form = document.getElementById('booking-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toast-message');
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    function showToast(msg) { toastMsg.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 4500); }
+
+    function openWA(message) {
+      const phone = '917041527196';
+      const enc = encodeURIComponent(message.trim());
+      if (isMobile) {
+        window.location.href = `whatsapp://send?phone=${phone}&text=${enc}`;
+        setTimeout(() => window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${enc}`, '_blank'), 1000);
+      } else {
+        window.open(`https://web.whatsapp.com/send?phone=${phone}&text=${enc}`, '_blank');
+      }
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const birthdate = document.getElementById('birthdate').value;
+      const service = document.getElementById('service').value;
+      const consType = document.getElementById('consultation-type').value;
+      const message = document.getElementById('message').value.trim();
+      if (!name || !email || !phone || !birthdate || !service || !consType) { showToast('Please fill in all required fields.'); return; }
+      const btnText = submitBtn.querySelector('.button-text');
+      const spinner = submitBtn.querySelector('.spinner');
+      btnText.style.display = 'none'; spinner.style.display = 'block'; submitBtn.disabled = true;
+      await new Promise(r => setTimeout(r, 1500));
+      const waMsg = `Hello! I would like to book a consultation.\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nDate of Birth: ${birthdate}\nService: ${service}\nConsultation Type: ${consType}\nMessage: ${message || 'No specific message provided'}\n\nPlease confirm my appointment. Thank you!`;
+      openWA(waMsg);
+      form.reset(); closeModalFn();
+      showToast('Booking request sent via WhatsApp! We will contact you soon.');
+      btnText.style.display = 'inline'; spinner.style.display = 'none'; submitBtn.disabled = false;
+    });
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // FOOTER YEAR
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // MAGNETIC BUTTONS (desktop)
+    if (!isMobile) {
+      document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const r = btn.getBoundingClientRect();
+          const x = (e.clientX - r.left - r.width / 2) * 0.18;
+          const y = (e.clientY - r.top - r.height / 2) * 0.18;
+          btn.style.transform = `translate(${x}px, ${y}px)`;
         });
-    </script>
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = '';
+          btn.style.transition = 'transform 0.55s cubic-bezier(0.22,1,0.36,1)';
+        });
+      });
+    }
+
+  });
+  </script>
 </body>
 </html>
