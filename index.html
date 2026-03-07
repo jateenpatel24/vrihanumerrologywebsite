@@ -19,6 +19,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- GSAP + ScrollTrigger for physics-based scroll interactions -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <script type="application/ld+json">
   {
@@ -311,8 +314,6 @@
     .toast { position:fixed; top:88px; right:20px; background:rgba(44,24,16,.95); border:1px solid var(--gold); color:#fdf6e3; padding:.9rem 1.4rem; border-radius:.85rem; box-shadow:0 8px 30px rgba(0,0,0,.25); z-index:2001; transform:translateX(440px); transition:transform .4s var(--ease-spring); max-width:320px; font-size:.88rem; }
     .toast.show { transform:translateX(0); }
 
-    /* ============ PROOF BADGE ============ */
-    .proof-badge { position:fixed; top:78px; right:16px; background:linear-gradient(135deg,#7c5a00,var(--gold)); color:#fff; padding:.35rem .9rem; border-radius:2rem; font-size:.74rem; font-weight:700; z-index:100; box-shadow:0 4px 18px rgba(184,134,11,.35); animation:badgePop .5s var(--ease-bounce) 1.2s both; letter-spacing:.03em; white-space:nowrap; }
 
     /* ============ PROFILE ============ */
     .profile-img { filter:drop-shadow(0 0 18px rgba(184,134,11,.25)); transition:filter .4s; }
@@ -327,13 +328,63 @@
 
     /* Hero gradient overlay for cream */
     .hero-overlay { background:radial-gradient(ellipse 80% 55% at 50% 38%,rgba(212,160,23,.08) 0%,transparent 70%); }
+
+    /* ============ [1] PROGRESS BAR ============ */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; width: 100%; height: 3px;
+      transform-origin: left center; transform: scaleX(0);
+      background: linear-gradient(90deg, var(--gold), var(--gold-bright), var(--gold-light), var(--gold-bright), var(--gold));
+      background-size: 200% auto;
+      animation: shimmer 3s linear infinite;
+      z-index: 9999; will-change: transform;
+      pointer-events: none;
+    }
+
+    /* ============ [2] HERO MARQUEE ============ */
+    .hero-marquee {
+      position: absolute; bottom: 60px; left: 0; width: 100%;
+      overflow: hidden; pointer-events: none; user-select: none; z-index: 1;
+    }
+    .hero-marquee-track {
+      display: inline-flex; white-space: nowrap;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 900; color: rgba(184,134,11,0.055);
+      will-change: transform;
+    }
+    .hero-marquee-text { padding: 0 3rem; }
+
+    /* ============ [3] SERVICE CARDS 3D ============ */
+    .services-3d-grid { perspective: 1400px; }
+    .service-card { will-change: transform; }
+
+    /* ============ [5] HERO SCALE ZONE ============ */
+    #hero .hero-content { will-change: transform, opacity; transform-origin: center top; }
+    #hero .hero-bg-scale { will-change: transform; transform-origin: center center; }
+
+    /* ============ [6] PERSPECTIVE SECTION ============ */
+    #about .about-perspective-wrap { perspective: 1000px; overflow: visible; }
+    #about .glass-card { will-change: transform; }
+    #testimonials .test-perspective-wrap { perspective: 1000px; overflow: visible; }
+    #testimonials .glass-card { will-change: transform; }
+
+    /* ============ SKEW TARGETS ============ */
+    .skew-target { will-change: transform; }
+
+    /* ============ REDUCED MOTION SAFETY ============ */
+    @media (prefers-reduced-motion: reduce) {
+      #progress-bar { animation: none; }
+      .hero-marquee-track, .skew-target, .service-card { will-change: auto; }
+    }
   </style>
 </head>
 
 <body>
+  <!-- [7] Spring Progress Bar -->
+  <div id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Reading progress"></div>
+
   <!-- Floating 24 -->
   <div class="bg-number hidden md:block" aria-hidden="true">24</div>
-  <div class="proof-badge" aria-label="500 plus happy clients">&#11088; 500+ Happy Clients</div>
 
   <!-- ===== FLOATING CONTACT STRIP ===== -->
   <!-- Always visible on every page, expand on hover to show label -->
@@ -400,26 +451,46 @@
   <main class="relative z-10">
 
     <!-- ===== HERO ===== -->
-    <section id="home" class="section min-h-screen text-center">
+    <section id="home" class="section min-h-screen text-center" style="position:relative;overflow:hidden;">
       <div class="absolute inset-0 z-0 pointer-events-none hero-overlay"></div>
-      <div class="relative z-10 px-4 max-w-5xl mx-auto">
 
-        <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8 reveal" style="background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2)" data-delay="0">
+      <!-- [2] Scroll-Linked Marquee — scrolls horizontally as user scrolls vertically -->
+      <div class="hero-marquee" aria-hidden="true">
+        <div class="hero-marquee-track" id="hero-marquee-track">
+          <span class="hero-marquee-text">NUMERROLOGY</span>
+          <span class="hero-marquee-text">✦</span>
+          <span class="hero-marquee-text">VRIHA</span>
+          <span class="hero-marquee-text">✦</span>
+          <span class="hero-marquee-text">NUMERROLOGY</span>
+          <span class="hero-marquee-text">✦</span>
+          <span class="hero-marquee-text">VRIHA</span>
+          <span class="hero-marquee-text">✦</span>
+          <span class="hero-marquee-text">NUMERROLOGY</span>
+          <span class="hero-marquee-text">✦</span>
+          <span class="hero-marquee-text">VRIHA</span>
+          <span class="hero-marquee-text">✦</span>
+        </div>
+      </div>
+
+      <!-- [5] Hero content — will scale+fade on scroll -->
+      <div class="hero-content relative z-10 px-4 max-w-5xl mx-auto">
+
+        <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8 reveal skew-target" style="background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2)" data-delay="0">
           <span style="color:var(--gold-bright)" class="text-sm">&#10022;</span>
           <span class="text-xs font-medium tracking-widest uppercase" style="color:var(--text-light)">Numerology &amp; Vastu Consultation</span>
           <span style="color:var(--gold-bright)" class="text-sm">&#10022;</span>
         </div>
 
-        <h1 class="cinzel text-4xl md:text-6xl lg:text-7xl font-bold mb-5 leading-tight reveal" data-delay="80">
+        <h1 class="cinzel text-4xl md:text-6xl lg:text-7xl font-bold mb-5 leading-tight reveal skew-target" data-delay="80">
           <span class="gold-text">Unlock Your</span><br>
           <span style="color:var(--text-dark)">Life's Potential</span>
         </h1>
 
-        <h2 class="text-base md:text-2xl font-light mb-5 reveal" style="color:var(--text-mid)" data-delay="160">
+        <h2 class="text-base md:text-2xl font-light mb-5 reveal skew-target" style="color:var(--text-mid)" data-delay="160">
           Guided By The Wisdom of Numbers And Planets.
         </h2>
 
-        <p class="text-sm md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed reveal" style="color:var(--text-light)" data-delay="240">
+        <p class="text-sm md:text-lg max-w-2xl mx-auto mb-10 leading-relaxed reveal skew-target" style="color:var(--text-light)" data-delay="240">
           Numerology And Signature Consultation for Financial Growth, Business, Company Name, Career, Health, Personal Matters based on analysis of Date of Birth, Prediction &amp; Suggestion.
         </p>
 
@@ -458,12 +529,14 @@
     <section id="about" class="section" style="background:linear-gradient(180deg,var(--cream) 0%,var(--cream-dark) 100%)">
       <div class="container mx-auto px-6 max-w-6xl w-full">
         <div class="text-center mb-10 reveal">
-          <p class="section-label">The Expert</p>
-          <h2 class="cinzel text-3xl md:text-5xl font-bold mb-3" style="color:var(--text-dark)">Meet Bbipin K Patel</h2>
+          <p class="section-label skew-target">The Expert</p>
+          <h2 class="cinzel text-3xl md:text-5xl font-bold mb-3 skew-target" style="color:var(--text-dark)">Meet Bbipin K Patel</h2>
           <div class="section-divider"></div>
         </div>
 
-        <div class="glass-card p-8 md:p-12 reveal" data-delay="80">
+        <!-- [6] Perspective wrap for about card -->
+        <div class="about-perspective-wrap">
+        <div class="glass-card p-8 md:p-12 reveal" data-delay="80" id="about-card">
           <div class="flex flex-col md:flex-row items-center md:gap-14">
             <div class="flex-shrink-0 mb-10 md:mb-0 relative">
               <div style="position:absolute;inset:-10px;border-radius:50%;border:1.5px solid rgba(184,134,11,.22);animation:ringPulse 4s ease-in-out infinite;pointer-events:none"></div>
@@ -486,6 +559,7 @@
             </div>
           </div>
         </div>
+        </div><!-- /about-perspective-wrap -->
       </div>
     </section>
 
@@ -493,13 +567,14 @@
     <section id="services" class="section" style="background:var(--cream)">
       <div class="container mx-auto px-6 max-w-6xl w-full">
         <div class="text-center mb-10 reveal">
-          <p class="section-label">What We Offer</p>
-          <h2 class="cinzel text-3xl md:text-5xl font-bold mb-3" style="color:var(--text-dark)">Our Services</h2>
+          <p class="section-label skew-target">What We Offer</p>
+          <h2 class="cinzel text-3xl md:text-5xl font-bold mb-3 skew-target" style="color:var(--text-dark)">Our Services</h2>
           <div class="section-divider"></div>
-          <p class="max-w-lg mx-auto text-sm mt-3" style="color:var(--text-light)">Personalized consultations to guide you towards prosperity, clarity, and harmony in all areas of life.</p>
+          <p class="max-w-lg mx-auto text-sm mt-3 skew-target" style="color:var(--text-light)">Personalized consultations to guide you towards prosperity, clarity, and harmony in all areas of life.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- [3] 3D Parallax Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 services-3d-grid" id="services-grid">
 
           <!-- Vastu -->
           <div class="service-card reveal" data-delay="0">
@@ -565,12 +640,14 @@
     <section id="testimonials" class="section" style="background:linear-gradient(180deg,var(--cream) 0%,var(--cream-dark) 100%)">
       <div class="container mx-auto px-6 max-w-5xl w-full">
         <div class="text-center mb-10 reveal">
-          <p class="section-label">Client Stories</p>
-          <h2 class="cinzel text-3xl md:text-5xl font-bold mb-3" style="color:var(--text-dark)">What Clients Say</h2>
+          <p class="section-label skew-target">Client Stories</p>
+          <h2 class="cinzel text-3xl md:text-5xl font-bold mb-3 skew-target" style="color:var(--text-dark)">What Clients Say</h2>
           <div class="section-divider"></div>
         </div>
 
-        <div class="glass-card p-4 md:p-8 reveal" data-delay="80">
+        <!-- [6] Perspective wrap for testimonials -->
+        <div class="test-perspective-wrap">
+        <div class="glass-card p-4 md:p-8 reveal" data-delay="80" id="test-card">
           <div class="relative w-full overflow-hidden">
             <div id="t-slider" class="flex t-container">
 
@@ -628,6 +705,7 @@
             <div class="flex justify-center gap-2 mt-6" id="t-dots"></div>
           </div>
         </div>
+        </div><!-- /test-perspective-wrap -->
       </div>
     </section>
 
@@ -648,7 +726,6 @@
 
             <!-- Phone — clickable, opens WhatsApp -->
             <a href="https://wa.me/917041527196?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" rel="noopener noreferrer" class="c-item" aria-label="Call or WhatsApp us">
-              <span class="text-xs font-semibold uppercase tracking-wider w-20 flex-shrink-0" style="color:var(--gold)">Phone</span>
               <span class="s-icon wa-ic flex-shrink-0">
                 <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.002 2.933c-7.255 0-13.143 5.888-13.143 13.143 0 2.315.6 4.577 1.746 6.583l-1.858 6.794 6.963-1.83c1.918 1.047 4.084 1.598 6.292 1.598h.001c7.255 0 13.143-5.888 13.143-13.143 0-3.514-1.368-6.82-3.855-9.307s-5.793-3.838-9.289-3.838zm0 23.919c-1.912 0-3.776-.51-5.395-1.474l-.385-.229-4.134 1.087 1.106-4.043-.25-.414c-1.04-1.72-1.59-3.698-1.59-5.743 0-6.102 4.963-11.065 11.065-11.065 2.955 0 5.732 1.151 7.818 3.238s3.235 4.872 3.235 7.809c0 6.101-4.963 11.064-11.065 11.064zm6.13-8.288c-.335-.167-1.983-.979-2.29-1.09-.307-.112-.53-.167-.754.167s-.864 1.09-1.059 1.314c-.195.223-.391.25-.726.083-.335-.167-1.414-.52-2.692-1.66-.994-.886-1.663-1.979-1.858-2.314-.195-.334-.021-.514.146-.68.15-.149.335-.391.503-.586.168-.195.224-.334.336-.557.112-.223.056-.417-.028-.584-.083-.167-.754-1.812-1.034-2.482-.272-.652-.55-.563-.754-.572-.195-.008-.419-.01-.644-.01-.223 0-.586.083-.892.417-.307.334-1.171 1.143-1.171 2.785s1.199 3.232 1.367 3.456c.168.223 2.356 3.6 5.71 5.041.799.345 1.422.551 1.908.705.801.255 1.53.219 2.106.132.642-.096 1.983-.811 2.263-1.593.279-.782.279-1.453.195-1.593-.084-.14-.307-.223-.642-.39z"/></svg>
               </span>
@@ -661,7 +738,6 @@
 
             <!-- Email — clickable, opens email client -->
             <a href="mailto:bbipinkpatel24@yahoo.com?subject=Numerology%20Consultation%20Enquiry&body=Hello%20Bbipin%20K%20Patel%2C%0A%0AI%20would%20like%20to%20enquire%20about%20your%20numerology%20services." class="c-item" aria-label="Send email">
-              <span class="text-xs font-semibold uppercase tracking-wider w-20 flex-shrink-0" style="color:var(--gold)">Email</span>
               <span class="mail-ic flex-shrink-0">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
               </span>
@@ -674,7 +750,6 @@
 
             <!-- Instagram — clickable, opens Instagram -->
             <a href="https://www.instagram.com/vriha_numerrology_24_" target="_blank" rel="noopener noreferrer" class="c-item" aria-label="Follow on Instagram">
-              <span class="text-xs font-semibold uppercase tracking-wider w-20 flex-shrink-0" style="color:var(--gold)">Instagram</span>
               <span class="ig-ic flex-shrink-0">
                 <svg viewBox="0 0 448 512" aria-hidden="true"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9S160.5 370.9 224.1 370.9 339 319.6 339 255.9 287.7 141 224.1 141zm0 190.6c-41.8 0-75.7-33.9-75.7-75.7s33.9-75.7 75.7-75.7 75.7 33.9 75.7 75.7-33.9 75.7-75.7 75.7zm146.4-194.3c0 14.9-12.1 27-27 27-14.9 0-27-12.1-27-27s12.1-27 27-27 27 12.1 27 27zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.9 1.7-67.7 9.9-93.9 36.2-26.2 26.2-34.4 58-36.2 93.9-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9 26.2 26.2 58 34.4 93.9 36.2 37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
               </span>
@@ -687,7 +762,6 @@
 
             <!-- Address — clickable, opens Google Maps -->
             <a href="https://maps.app.goo.gl/UhDEdM3y9oEiJX6z8" target="_blank" rel="noopener noreferrer" class="c-item" aria-label="Open location in Google Maps">
-              <span class="text-xs font-semibold uppercase tracking-wider w-20 flex-shrink-0" style="color:var(--gold)">Address</span>
               <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" style="color:#ea4335" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
               <div>
                 <div class="text-xs leading-relaxed" style="color:var(--text-mid)">Gf - 10, Arjun Complex, opp. Radheshyam party plot, near Saurabh School Road, Vijay Nagar, Nava Vadaj, Ahmedabad, Gujarat 382480</div>
@@ -956,5 +1030,361 @@
 
   });
   </script>
+
+  <!-- ============================================================
+       GSAP PHYSICS-BASED SCROLL INTERACTIONS — ALL 7 FEATURES
+       ============================================================ -->
+  <script>
+  (function() {
+    // Respect prefers-reduced-motion
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ─────────────────────────────────────────────
+    // [7] SPRING PROGRESS BAR
+    // Uses scaleX(0→1) on compositor thread, lerp-chased
+    // ─────────────────────────────────────────────
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+      let targetProg = 0, currentProg = 0;
+      const lerpFactor = reducedMotion ? 1 : 0.09;
+      const progSetter = gsap.quickSetter(progressBar, 'scaleX');
+      // Override width to 100% so scaleX drives the fill
+      progressBar.style.width = '100%';
+      progressBar.style.transform = 'scaleX(0)';
+
+      ScrollTrigger.create({
+        start: 0, end: 'max',
+        onUpdate: self => {
+          targetProg = self.progress;
+          progressBar.setAttribute('aria-valuenow', Math.round(targetProg * 100));
+        }
+      });
+
+      gsap.ticker.add(() => {
+        currentProg += (targetProg - currentProg) * lerpFactor;
+        progSetter(currentProg);
+      });
+    }
+
+    if (reducedMotion) return; // Stop here for reduced-motion users — progress bar still works above
+
+    // ─────────────────────────────────────────────
+    // [1] VELOCITY-BASED SKEWING
+    // Elements lean in the scroll direction — faster = more tilt
+    // ─────────────────────────────────────────────
+    if (!isMobileDevice) {
+      const skewTargets = document.querySelectorAll('.skew-target');
+      let skewVelocity = 0;
+      const skewClamp = gsap.utils.clamp(-10, 10);
+
+      ScrollTrigger.observe({
+        type: 'scroll',
+        onChange: self => {
+          skewVelocity = skewClamp(self.velocityY / 320);
+        }
+      });
+
+      gsap.ticker.add(() => {
+        // Spring-ease back to zero
+        skewVelocity *= 0.88;
+        if (Math.abs(skewVelocity) < 0.01) skewVelocity = 0;
+        skewTargets.forEach(el => {
+          gsap.set(el, { skewY: skewVelocity, transformOrigin: 'center center' });
+        });
+      });
+    }
+
+    // ─────────────────────────────────────────────
+    // [2] SCROLL-LINKED MARQUEE
+    // Hero marquee slides horizontally as user scrolls vertically
+    // ─────────────────────────────────────────────
+    const marqueeTrack = document.getElementById('hero-marquee-track');
+    if (marqueeTrack) {
+      gsap.to(marqueeTrack, {
+        x: () => -(window.innerWidth * 1.8),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#home',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.2,
+          invalidateOnRefresh: true
+        }
+      });
+    }
+
+    // ─────────────────────────────────────────────
+    // [3] 3D PARALLAX SERVICE CARDS
+    // Each card shifts at a different depth + gentle rotateY
+    // ─────────────────────────────────────────────
+    const serviceCards = document.querySelectorAll('#services-grid .service-card');
+    if (serviceCards.length) {
+      serviceCards.forEach((card, i) => {
+        const depthFactor = [1, 1.4, 0.8, 1.2][i] || 1;
+        gsap.fromTo(card,
+          { opacity: 0, y: 60 + (i * 12), rotateY: (i % 2 === 0 ? 8 : -8) },
+          {
+            opacity: 1, y: 0, rotateY: 0,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 88%',
+              end: 'top 35%',
+              scrub: 0.7,
+              invalidateOnRefresh: true
+            }
+          }
+        );
+
+        // Subtle parallax continue as card passes through viewport
+        gsap.to(card, {
+          y: () => -30 * depthFactor,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+            invalidateOnRefresh: true
+          }
+        });
+      });
+    }
+
+    // ─────────────────────────────────────────────
+    // [4] MAGNETIC CTA BUTTONS — ENHANCED
+    // Pulls toward cursor within 100px radius, elastic spring return
+    // ─────────────────────────────────────────────
+    if (!isMobileDevice) {
+      document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+        const radius = 100;
+        let rafId;
+
+        btn.removeEventListener('mousemove', btn._magMove);
+        btn.removeEventListener('mouseleave', btn._magLeave);
+
+        btn._magMove = (e) => {
+          cancelAnimationFrame(rafId);
+          rafId = requestAnimationFrame(() => {
+            const r = btn.getBoundingClientRect();
+            const cx = r.left + r.width / 2;
+            const cy = r.top + r.height / 2;
+            const dx = e.clientX - cx;
+            const dy = e.clientY - cy;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < radius) {
+              const pull = (1 - dist / radius) * 0.45;
+              gsap.to(btn, { x: dx * pull, y: dy * pull, duration: 0.35, ease: 'power2.out', overwrite: true });
+            }
+          });
+        };
+        btn._magLeave = () => {
+          cancelAnimationFrame(rafId);
+          gsap.to(btn, { x: 0, y: 0, duration: 0.75, ease: 'elastic.out(1, 0.42)', overwrite: true });
+        };
+
+        btn.addEventListener('mousemove', btn._magMove);
+        btn.addEventListener('mouseleave', btn._magLeave);
+      });
+    }
+
+    // ─────────────────────────────────────────────
+    // [5] DYNAMIC HERO SCALING
+    // Hero content shrinks + fades as user scrolls away; overlay scales up
+    // ─────────────────────────────────────────────
+    const heroContent = document.querySelector('.hero-content');
+    const heroOverlay = document.querySelector('.hero-overlay');
+
+    if (heroContent) {
+      gsap.to(heroContent, {
+        scale: 0.88,
+        opacity: 0,
+        y: -48,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#home',
+          start: 'top top',
+          end: '45% top',
+          scrub: 1.5,
+          invalidateOnRefresh: true
+        }
+      });
+    }
+
+    if (heroOverlay) {
+      gsap.to(heroOverlay, {
+        scale: 1.18,
+        opacity: 0.6,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#home',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+          invalidateOnRefresh: true
+        }
+      });
+    }
+
+    // ─────────────────────────────────────────────
+    // [6] PERSPECTIVE SECTION ROTATIONS
+    // About card + Testimonials card tilt in 3D as they enter/leave
+    // ─────────────────────────────────────────────
+    const perspCards = [
+      { id: '#about-card',   trigger: '#about' },
+      { id: '#test-card',    trigger: '#testimonials' }
+    ];
+
+    perspCards.forEach(({ id, trigger }) => {
+      const card = document.querySelector(id);
+      if (!card) return;
+
+      // Enter: tilt from slightly-back to flat
+      gsap.fromTo(card,
+        { rotateX: 18, opacity: 0.5, y: 60 },
+        {
+          rotateX: 0, opacity: 1, y: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger,
+            start: 'top 80%',
+            end: 'center 55%',
+            scrub: 1.2,
+            invalidateOnRefresh: true
+          }
+        }
+      );
+
+      // Exit: tilt forward as section leaves
+      gsap.to(card, {
+        rotateX: -12,
+        opacity: 0.7,
+        ease: 'none',
+        scrollTrigger: {
+          trigger,
+          start: 'center 45%',
+          end: 'bottom top',
+          scrub: 1.2,
+          invalidateOnRefresh: true
+        }
+      });
+    });
+
+    // ─────────────────────────────────────────────
+    // BONUS: Stagger section heading reveals with GSAP
+    // Replaces the IntersectionObserver reveal for headings only
+    // ─────────────────────────────────────────────
+    document.querySelectorAll('.section-label, #about h2, #services h2, #testimonials h2, #contact h2').forEach(el => {
+      gsap.from(el, {
+        y: 32, opacity: 0, duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    // ─────────────────────────────────────────────
+    // CLEANUP: Refresh on load & resize
+    // ─────────────────────────────────────────────
+    window.addEventListener('load', () => ScrollTrigger.refresh());
+    window.addEventListener('resize', () => ScrollTrigger.refresh(), { passive: true });
+
+  })();
+  </script>
+
+  <style>
+  /* ============================================================
+     RESPONSIVE FIXES — Mobile First
+     ============================================================ */
+
+  /* Floating contact strip — hide on very small screens, show as bottom bar */
+  @media (max-width: 480px) {
+    .contact-strip {
+      bottom: auto;
+      top: auto;
+      right: auto;
+      left: 0;
+      bottom: 0;
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-around;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(253,246,227,0.97);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(184,134,11,.2);
+      gap: 0;
+      z-index: 1000;
+      box-shadow: 0 -4px 20px rgba(184,134,11,.1);
+    }
+    .strip-btn { width: 44px; height: 44px; border-radius: 50%; justify-content: center; }
+    .strip-btn:hover { width: 44px; padding: 0; border-radius: 50%; }
+    .strip-label { display: none !important; }
+    .floating-wa { bottom: 72px; }
+    .back-top { bottom: 72px; }
+  }
+
+  /* Hero section — tighter on mobile */
+  @media (max-width: 640px) {
+    #home { padding-top: 5rem; padding-bottom: 2rem; }
+    #home h1 { font-size: clamp(2rem, 9vw, 3.5rem); }
+    #home h2 { font-size: clamp(0.9rem, 4vw, 1.25rem); }
+    .hero-marquee { bottom: 30px; }
+    .hero-marquee-track { font-size: clamp(2.5rem, 18vw, 5rem); }
+    .stat-number { font-size: 1.7rem; }
+  }
+
+  /* About section — stack on mobile */
+  @media (max-width: 768px) {
+    #about .glass-card { padding: 1.5rem !important; }
+    .profile-img { width: 9rem !important; height: 9rem !important; }
+  }
+
+  /* Service cards — single column, no 3D on mobile (perf) */
+  @media (max-width: 640px) {
+    .services-3d-grid { perspective: none !important; }
+    .service-card { transform: none !important; }
+  }
+
+  /* Testimonials — better padding on mobile */
+  @media (max-width: 640px) {
+    .t-item { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
+    #prev-t, #next-t { display: none !important; }
+  }
+
+  /* Contact section — full width, readable items */
+  @media (max-width: 640px) {
+    .c-item { padding: 0.75rem 0.9rem; flex-wrap: nowrap; }
+    .c-item .text-sm { font-size: 0.8rem; }
+    #contact .glass-card { padding: 1.25rem !important; }
+  }
+
+  /* Nav — ensure logo doesn't overflow */
+  @media (max-width: 360px) {
+    .cinzel.text-xl { font-size: 1rem; }
+  }
+
+  /* Section min-height fix — avoid empty space on small phones */
+  @media (max-width: 480px) {
+    .section { min-height: auto !important; padding: 4.5rem 1rem 3rem; }
+  }
+
+  /* Modal — full screen on mobile */
+  @media (max-width: 600px) {
+    .modal-content { padding: 1.5rem 1.25rem; border-radius: 1rem; max-height: 95vh; }
+  }
+
+  /* Toast — full width on mobile */
+  @media (max-width: 480px) {
+    .toast { right: 8px; left: 8px; max-width: none; }
+  }
+  </style>
 </body>
 </html>
