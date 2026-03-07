@@ -345,14 +345,24 @@
       position: absolute; bottom: 60px; left: 0; width: 100%;
       overflow: hidden; pointer-events: none; user-select: none; z-index: 1;
     }
+    /* Continuous marquee — runs forever, independent of scroll */
+    @keyframes marqueeRun {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
     .hero-marquee-track {
       display: inline-flex; white-space: nowrap;
       font-family: 'Cinzel', serif;
       font-size: clamp(4rem, 10vw, 8rem);
       font-weight: 900; color: rgba(184,134,11,0.055);
       will-change: transform;
+      animation: marqueeRun 22s linear infinite;
     }
+    .hero-marquee-track:hover { animation-play-state: paused; }
     .hero-marquee-text { padding: 0 3rem; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-marquee-track { animation: none; }
+    }
 
     /* ============ [3] SERVICE CARDS 3D ============ */
     .services-3d-grid { perspective: 1400px; }
@@ -454,21 +464,19 @@
     <section id="home" class="section min-h-screen text-center" style="position:relative;overflow:hidden;">
       <div class="absolute inset-0 z-0 pointer-events-none hero-overlay"></div>
 
-      <!-- [2] Scroll-Linked Marquee — scrolls horizontally as user scrolls vertically -->
+      <!-- [2] Continuous Marquee — always running, seamless loop -->
       <div class="hero-marquee" aria-hidden="true">
         <div class="hero-marquee-track" id="hero-marquee-track">
-          <span class="hero-marquee-text">NUMERROLOGY</span>
-          <span class="hero-marquee-text">✦</span>
+          <!-- First set -->
           <span class="hero-marquee-text">VRIHA</span>
-          <span class="hero-marquee-text">✦</span>
           <span class="hero-marquee-text">NUMERROLOGY</span>
-          <span class="hero-marquee-text">✦</span>
           <span class="hero-marquee-text">VRIHA</span>
-          <span class="hero-marquee-text">✦</span>
           <span class="hero-marquee-text">NUMERROLOGY</span>
-          <span class="hero-marquee-text">✦</span>
+          <!-- Duplicate set — identical, enables seamless -50% loop -->
           <span class="hero-marquee-text">VRIHA</span>
-          <span class="hero-marquee-text">✦</span>
+          <span class="hero-marquee-text">NUMERROLOGY</span>
+          <span class="hero-marquee-text">VRIHA</span>
+          <span class="hero-marquee-text">NUMERROLOGY</span>
         </div>
       </div>
 
@@ -500,20 +508,10 @@
         </div>
 
         <!-- Stats -->
-        <div class="mt-16 flex flex-wrap gap-10 justify-center reveal" data-delay="400">
+        <div class="mt-16 flex justify-center reveal" data-delay="400">
           <div class="text-center">
             <div class="stat-number" data-count="7000" data-suffix="+">0+</div>
-            <div class="text-xs uppercase tracking-widest mt-1" style="color:var(--text-light)">Consultations</div>
-          </div>
-          <div class="w-px hidden sm:block self-stretch" style="background:rgba(184,134,11,.2)"></div>
-          <div class="text-center">
-            <div class="stat-number" data-count="500" data-suffix="+">0+</div>
             <div class="text-xs uppercase tracking-widest mt-1" style="color:var(--text-light)">Happy Clients</div>
-          </div>
-          <div class="w-px hidden sm:block self-stretch" style="background:rgba(184,134,11,.2)"></div>
-          <div class="text-center">
-            <div class="stat-number">5.0 &#9733;</div>
-            <div class="text-xs uppercase tracking-widest mt-1" style="color:var(--text-light)">Star Rating</div>
           </div>
         </div>
 
@@ -1072,50 +1070,9 @@
 
     if (reducedMotion) return; // Stop here for reduced-motion users — progress bar still works above
 
-    // ─────────────────────────────────────────────
-    // [1] VELOCITY-BASED SKEWING
-    // Elements lean in the scroll direction — faster = more tilt
-    // ─────────────────────────────────────────────
-    if (!isMobileDevice) {
-      const skewTargets = document.querySelectorAll('.skew-target');
-      let skewVelocity = 0;
-      const skewClamp = gsap.utils.clamp(-10, 10);
+    // [1] Skewing removed by user request — no wave effect on scroll
 
-      ScrollTrigger.observe({
-        type: 'scroll',
-        onChange: self => {
-          skewVelocity = skewClamp(self.velocityY / 320);
-        }
-      });
-
-      gsap.ticker.add(() => {
-        // Spring-ease back to zero
-        skewVelocity *= 0.88;
-        if (Math.abs(skewVelocity) < 0.01) skewVelocity = 0;
-        skewTargets.forEach(el => {
-          gsap.set(el, { skewY: skewVelocity, transformOrigin: 'center center' });
-        });
-      });
-    }
-
-    // ─────────────────────────────────────────────
-    // [2] SCROLL-LINKED MARQUEE
-    // Hero marquee slides horizontally as user scrolls vertically
-    // ─────────────────────────────────────────────
-    const marqueeTrack = document.getElementById('hero-marquee-track');
-    if (marqueeTrack) {
-      gsap.to(marqueeTrack, {
-        x: () => -(window.innerWidth * 1.8),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '#home',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.2,
-          invalidateOnRefresh: true
-        }
-      });
-    }
+    // [2] Continuous marquee handled by CSS animation (see @keyframes marqueeRun)
 
     // ─────────────────────────────────────────────
     // [3] 3D PARALLAX SERVICE CARDS
