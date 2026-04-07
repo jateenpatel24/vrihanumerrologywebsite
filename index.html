@@ -224,7 +224,8 @@
     /* ============ PRICING ============ */
     .pricing-toggle { margin-top:1rem; text-align:center; }
     .toggle-btn { background:rgba(184,134,11,.08); color:var(--gold); border:1px solid rgba(184,134,11,.25); padding:.35rem 1rem; border-radius:2rem; cursor:pointer; font-size:.82rem; font-weight:500; letter-spacing:.04em; transition:all .25s; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
-    .toggle-btn:hover,.toggle-btn.active { background:var(--gold); color:#fff; border-color:var(--gold); }
+    @media (hover: hover) { .toggle-btn:hover { background:var(--gold); color:#fff; border-color:var(--gold); } }
+    .toggle-btn.active { background:var(--gold); color:#fff; border-color:var(--gold); }
     .pricing-info { margin-top:.65rem; padding:.75rem 1rem; background:rgba(255,248,210,.8); border:1px solid rgba(184,134,11,.2); border-radius:.65rem; display:none; }
     .pricing-info.show { display:block; animation:fadeUp .3s var(--ease-spring); }
 
